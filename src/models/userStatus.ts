@@ -1,0 +1,7 @@
+export enum UserStatus {
+  INACTIVE = 'INACTIVE',
+  ACTIVE = 'ACTIVE',
+  UNVERIFIED = 'UNVERIFIED',
+  VERIFIED = 'VERIFIED',
+  INVITED = 'INVITED',
+}
