@@ -4,6 +4,5 @@ export interface Props {}
 
 export interface DrawerRoute {
   title: string;
-  icon: any;
   name: RouteName;
 }

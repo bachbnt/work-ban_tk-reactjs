@@ -1,13 +1,10 @@
-import { Token } from 'src/models/token';
 import { BaseRequest, BaseResponse } from './base';
 
 export interface SignUpRequest extends BaseRequest {
+  username: string;
   email: string;
-  firstName: string;
-  lastName: string;
+  phone: string;
   password: string;
 }
 
-export interface SignUpResponse extends BaseResponse {
-  data: Token;
-}
+export interface SignUpResponse extends BaseResponse {}

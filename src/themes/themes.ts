@@ -226,7 +226,8 @@ const themes = {
     },
     MuiDivider: {
       root: {
-        borderColor: 'rgba(181,181,181,0.3)',
+        borderColor: colors.white,
+        backgroundColor: colors.white,
       },
     },
     MuiListItemText: {
@@ -375,11 +376,12 @@ const themes = {
       button: {
         paddingTop: 12,
         paddingBottom: 12,
+        color: theme.palette.common.white,
         '&:hover': {
-          color: theme.palette.primary.dark,
+          color: theme.palette.common.white,
         },
         '&$selected, &$selected:hover': {
-          backgroundColor: theme.palette.primary.main,
+          backgroundColor: colors.itemBackground,
           color: theme.palette.common.white,
           boxShadow: variables.boxShadowPrimary,
         },
@@ -389,12 +391,18 @@ const themes = {
       root: {
         '& > h2': {
           color: theme.palette.primary.main,
+          textAlign: 'center',
         },
       },
     },
     MuiDialogActions: {
       root: {
         justifyContent: 'center',
+      },
+    },
+    MuiDrawer: {
+      paper: {
+        backgroundColor: colors.drawerBackground,
       },
     },
   },

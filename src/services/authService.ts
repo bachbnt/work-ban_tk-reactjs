@@ -3,39 +3,31 @@ import { Key } from 'src/constants/key';
 import { SignInRequest, SignInResponse } from 'src/models/reqres/signIn';
 import { SignUpRequest, SignUpResponse } from 'src/models/reqres/signUp';
 import { SignOutRequest, SignOutResponse } from 'src/models/reqres/signOut';
-import {
-  ForgotPasswordRequest,
-  ForgotPasswordResponse,
-} from 'src/models/reqres/forgotPassword';
 import { cookie } from 'src/utils/cookie';
 
 class AuthService {
   async signIn(request: SignInRequest): Promise<SignInResponse> {
     cookie.setItem(Key.ACCESS_TOKEN, 'dsd');
     return {
-      data: { accessToken: '', refreshToken: '' },
-      message: '',
+      status: 200,
+      data: { token: '' },
     };
   }
   async signUp(request: SignUpRequest): Promise<SignUpResponse> {
     return {
-      data: { accessToken: '', refreshToken: '' },
+      status: 200,
     };
   }
   async signOut(request: SignOutRequest): Promise<SignOutResponse> {
     cookie.removeItem(Key.ACCESS_TOKEN);
-    return {};
+    return {
+      status: 200,
+    };
   }
 
   isSignedIn(): boolean {
-    const accessToken = cookie.getItem(Key.ACCESS_TOKEN);
-    return !!accessToken;
-  }
-
-  async forgotPassword(
-    request: ForgotPasswordRequest
-  ): Promise<ForgotPasswordResponse> {
-    return {};
+    const token = cookie.getItem(Key.ACCESS_TOKEN);
+    return !!token;
   }
 }
 

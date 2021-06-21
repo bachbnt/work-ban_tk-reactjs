@@ -1,50 +1,32 @@
 import {
-  ChangePasswordRequest,
-  ChangePasswordResponse,
-} from 'src/models/reqres/changePassword';
-import {
   GetProfileRequest,
   GetProfileResponse,
 } from 'src/models/reqres/getProfile';
 import {
-  UpdateProfileRequest,
-  UpdateProfileResponse,
-} from 'src/models/reqres/updateProfile';
+  VerifyEmailRequest,
+  VerifyEmailResponse,
+} from 'src/models/reqres/verifyEmail';
 import { UserRole } from 'src/models/userRole';
 
 class UserService {
   async getProfile(request: GetProfileRequest): Promise<GetProfileResponse> {
     return {
+      status: 200,
       data: {
-        id: '',
-        firstName: 'Bach',
-        lastName: 'Bui',
+        _id: '',
+        username: 'bach',
         email: 'bachbnt@gmail.com',
         role: UserRole.ADMIN,
-        avatar:
-          'https://raw.githubusercontent.com/bachbnt/assets/main/avatar.jpeg',
+        phone: '0123456789',
       },
     };
   }
 
-  async updateProfile(
-    request: UpdateProfileRequest
-  ): Promise<UpdateProfileResponse> {
+  async verifyEmail(request: VerifyEmailRequest): Promise<VerifyEmailResponse> {
     return {
-      data: {
-        id: '',
-        firstName: 'Bach',
-        lastName: 'Bui',
-        email: 'bachbnt@gmail.com',
-        role: UserRole.ADMIN,
-      },
+      status: 200,
+      data: {},
     };
-  }
-
-  async changePassword(
-    request: ChangePasswordRequest
-  ): Promise<ChangePasswordResponse> {
-    return {};
   }
 }
 

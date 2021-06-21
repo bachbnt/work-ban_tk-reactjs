@@ -10,7 +10,7 @@ const Home = (props: Props) => {
   const { t } = useTranslation();
 
   return (
-    <Layout main title={i18nKey.dashboard}>
+    <Layout main>
       <Typography>home</Typography>
     </Layout>
   );

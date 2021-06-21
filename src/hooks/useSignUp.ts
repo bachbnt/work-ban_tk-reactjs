@@ -1,39 +1,43 @@
 import { useCallback } from 'react';
-import { useHistory } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { HIDE_SPINNER, SHOW_SPINNER } from 'src/redux/spinner/spinnerAction';
-import { RouteName } from 'src/routes/routeName';
 import { toast } from 'src/utils/toast';
 import useAuth from './useAuth';
-import useProfile from './useProfile';
+import { i18nKey } from 'src/locales/i18n';
+import { TOGGLE_SIGN_UP } from 'src/redux/signUpDialog/signUpDialogAction';
 
 const useSignUp = () => {
   const { t } = useTranslation();
-  const history = useHistory();
   const dispatch = useDispatch();
   const auth = useAuth();
-  const { getData: getProfile } = useProfile();
 
   const signUp = useCallback(
     async (
+      username: string,
       email: string,
-      firstName: string,
-      lastName: string,
+      phone: string,
       password: string
     ) => {
       dispatch({ type: SHOW_SPINNER });
       try {
-        await auth.signUp({ email, firstName, lastName, password });
-        await getProfile();
-        history.replace(RouteName.HOME);
+        const response = await auth.signUp({
+          username,
+          email,
+          phone,
+          password,
+        });
+        if (response.status === 200) {
+          toast.error(t(i18nKey.success));
+        }
+        dispatch({ type: TOGGLE_SIGN_UP });
       } catch (error) {
         toast.error(t(error.message));
       } finally {
         dispatch({ type: HIDE_SPINNER });
       }
     },
-    [t, history, dispatch, auth, getProfile]
+    [t, dispatch, auth]
   );
 
   return { signUp };

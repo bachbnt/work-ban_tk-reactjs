@@ -47,10 +47,27 @@ export default makeStyles((theme: AppTheme) =>
     name: {
       overflow: 'hidden',
       textOverflow: 'ellipsis',
+      color: theme.palette.common.white,
+    },
+    otherText: {
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
     },
     listItem: {
       overflow: 'hidden',
       borderRadius: theme.variables.borderRadius,
+    },
+    button: {
+      backgroundColor: theme.colors.primary,
+      color: theme.palette.common.black,
+      '&:hover': {
+        color: theme.palette.common.black,
+        backgroundColor: theme.colors.primaryDark,
+      },
+    },
+    footer: {
+      position: 'fixed',
+      bottom: 0,
     },
   })
 );

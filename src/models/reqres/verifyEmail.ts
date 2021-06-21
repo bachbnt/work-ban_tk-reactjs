@@ -1,7 +1,7 @@
 import { BaseRequest, BaseResponse } from './base';
 
-export interface VerifyEmail extends BaseRequest {
+export interface VerifyEmailRequest extends BaseRequest {
   code: string;
 }
 
-export interface VerifyEmail extends BaseResponse {}
+export interface VerifyEmailResponse extends BaseResponse {}

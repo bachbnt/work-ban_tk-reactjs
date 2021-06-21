@@ -1,9 +1,9 @@
 const colors = {
   white: '#ffffff',
   black: '#000000',
-  primary: '#1c6db2',
-  primaryLight: '#498ac1',
-  primaryDark: '#16578e',
+  primary: '#FFDD58',
+  primaryLight: '#ffe379',
+  primaryDark: '#ccb046',
   secondary: '#1c6db2',
   secondaryLight: '#498ac1',
   secondaryDark: '#16578e',
@@ -22,6 +22,10 @@ const colors = {
   background: '#eaeff1',
   subtitle: '#262626',
   blackTransparent: '#00000066',
+  drawerBackground: '#3445B4',
+  itemBackground: '#042B5A',
+  green: '#28A745',
+  red: '#DC3545',
 };
 
 export default colors;

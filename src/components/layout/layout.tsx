@@ -1,26 +1,50 @@
 import { Box } from '@material-ui/core';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import clsx from 'clsx';
 import Drawer from 'src/components/drawer';
-import Footer from 'src/components/footer';
-import Header from 'src/components/header';
 import { RootState } from 'src/redux/rootState';
 import useThemeStyles from 'src/themes/styles';
 import { Props } from './props';
 import useStyles from './styles';
+import SignInDialog from '../signInDialog';
+import SignUpDialog from '../signUpDialog';
+import { TOGGLE_SIGN_IN } from 'src/redux/signInDialog/signInDialogAction';
+import { TOGGLE_SIGN_UP } from 'src/redux/signUpDialog/signUpDialogAction';
 
 const Layout = (props: Props) => {
   const classes = useStyles();
   const themeClasses = useThemeStyles();
-  const { children, title, main } = props;
+  const { children, main } = props;
+  const dispatch = useDispatch();
 
   const drawerReducer = useSelector((state: RootState) => state.drawerReducer);
+  const signInReducer = useSelector(
+    (state: RootState) => state.signInDialogReducer
+  );
+  const signUpReducer = useSelector(
+    (state: RootState) => state.signUpDialogReducer
+  );
+
   const openDrawer = drawerReducer.open;
+
+  const openSignIn = signInReducer.open;
+  const openSignUp = signUpReducer.open;
+
+  const handleCloseSignIn = () => {
+    if (signInReducer.open) {
+      dispatch({ type: TOGGLE_SIGN_IN });
+    }
+  };
+
+  const handleCloseSignUp = () => {
+    if (signUpReducer.open) {
+      dispatch({ type: TOGGLE_SIGN_UP });
+    }
+  };
 
   return (
     <Box display='flex' className={classes.root}>
       <Box display='flex' flexDirection='column' className={classes.app}>
-        {!!main && <Header title={title} dateTime />}
         {!!main && <Drawer />}
         <Box
           px={3}
@@ -32,8 +56,9 @@ const Layout = (props: Props) => {
           })}>
           {children}
         </Box>
-        {!!main && <Footer />}
       </Box>
+      <SignInDialog open={openSignIn} onClose={handleCloseSignIn} />
+      <SignUpDialog open={openSignUp} onClose={handleCloseSignUp} />
     </Box>
   );
 };

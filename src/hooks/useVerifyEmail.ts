@@ -6,34 +6,38 @@ import { HIDE_SPINNER, SHOW_SPINNER } from 'src/redux/spinner/spinnerAction';
 import { RouteName } from 'src/routes/routeName';
 import { toast } from 'src/utils/toast';
 import useAuth from './useAuth';
-import useProfile from './useProfile';
-import { TOGGLE_SIGN_IN } from 'src/redux/signInDialog/signInDialogAction';
+import { userService } from 'src/services/userService';
+import { i18nKey } from 'src/locales/i18n';
 
-const useSignIn = () => {
+const useVerifyEmail = () => {
   const { t } = useTranslation();
   const history = useHistory();
   const dispatch = useDispatch();
   const auth = useAuth();
-  const { getData: getProfile } = useProfile();
 
-  const signIn = useCallback(
-    async (username: string, password: string) => {
+  const getData = useCallback(
+    async (code: string) => {
+      if (!auth.isSignedIn()) {
+        return;
+      }
+
       dispatch({ type: SHOW_SPINNER });
       try {
-        await auth.signIn({ username, password });
-        await getProfile();
-        dispatch({ type: TOGGLE_SIGN_IN });
-        history.replace(RouteName.HOME);
+        const response = await userService.verifyEmail({ code });
+        if (response.status === 200) {
+          toast.error(t(i18nKey.success));
+          history.replace(RouteName.HOME);
+        }
       } catch (error) {
         toast.error(t(error.message));
       } finally {
         dispatch({ type: HIDE_SPINNER });
       }
     },
-    [t, history, dispatch, auth, getProfile]
+    [t, auth, dispatch, history]
   );
 
-  return { signIn };
+  return { getData };
 };
 
-export default useSignIn;
+export default useVerifyEmail;
