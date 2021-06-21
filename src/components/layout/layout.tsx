@@ -48,6 +48,7 @@ const Layout = (props: Props) => {
         {!!main && <Drawer />}
         <Box
           px={3}
+          pb={3}
           className={clsx(classes.container, {
             [clsx(classes.main, {
               [themeClasses.drawerOpen]: openDrawer,

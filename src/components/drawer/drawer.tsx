@@ -23,11 +23,15 @@ import { Props, DrawerRoute } from './props';
 import useStyles from './styles';
 import useAuth from 'src/hooks/useAuth';
 import useSignOut from 'src/hooks/useSignOut';
-import { useState } from 'react';
 import { TOGGLE_SIGN_IN } from 'src/redux/signInDialog/signInDialogAction';
 import { TOGGLE_SIGN_UP } from 'src/redux/signUpDialog/signUpDialogAction';
 
-const routes: DrawerRoute[] = [{ title: 'facebook', name: RouteName.HOME }];
+const routes: DrawerRoute[] = [
+  { title: 'facebook', name: RouteName.HOME },
+  { title: 'gmail', name: RouteName.GMAIL },
+  { title: 'hotmail', name: RouteName.HOTMAIL },
+  { title: 'tích hợp API', name: RouteName.API },
+];
 
 const Drawer = (props: Props) => {
   const classes = useStyles();
@@ -79,10 +83,17 @@ const Drawer = (props: Props) => {
         [classes.drawerClose]: !open,
       })}>
       <Box
-        textAlign='right'
         className={classes.container}
         px={open ? 4 : 3}
-        py={1}>
+        py={3}
+        display='flex'
+        flexDirection='row'
+        justifyContent='space-between'
+        alignItems='center'>
+        <Typography variant='h3' color='primary' className={classes.otherText}>
+          {Config.APP_NAME}
+        </Typography>
+
         <IconButton
           classes={{ root: classes.menuOpenButtonRoot }}
           onClick={toggleDrawer}>
@@ -95,24 +106,13 @@ const Drawer = (props: Props) => {
       <Box px={2}>
         <Divider />
       </Box>
-      <Box className={classes.container} px={open ? 4 : 3} py={3}>
-        <Typography variant='h3' color='primary' className={classes.otherText}>
-          {Config.APP_NAME}
-        </Typography>
-      </Box>
-      <Box px={2}>
-        <Divider />
-      </Box>
       {auth.isSignedIn() ? (
         <Box className={classes.container} px={open ? 4 : 3} py={3}>
           <Typography className={clsx(classes.name)} variant='h5'>
             {userReducer?.email}
           </Typography>
           <Box my={2}>
-            <Typography
-              variant='h4'
-              color='primary'
-              className={classes.otherText}>
+            <Typography variant='h4' color='primary'>
               0 VND
             </Typography>
           </Box>
@@ -139,7 +139,7 @@ const Drawer = (props: Props) => {
             </ListItemIcon>
             <ListItemText primary={'Đăng nhập'} />
           </ListItem>
-          <Box py={1} />
+          <Box py={0.5} />
           <ListItem
             key={'dn'}
             button
@@ -161,8 +161,8 @@ const Drawer = (props: Props) => {
             <ListItem
               key={index}
               button
-              selected
-              className={clsx(classes.listItem)}
+              selected={currentRoute === route.name}
+              className={clsx(classes.listItem, classes.routeItem)}
               onClick={() => {
                 handleNavigate(route.name);
               }}>
@@ -172,13 +172,7 @@ const Drawer = (props: Props) => {
         </List>
       </Box>
       {auth.isSignedIn() && (
-        <Box
-          className={clsx(classes.container, classes.footer, {
-            [classes.drawerOpen]: open,
-            [classes.drawerClose]: !open,
-          })}
-          px={open ? 4 : 3}
-          py={3}>
+        <Box className={clsx(classes.container)} px={open ? 4 : 3} py={3}>
           <ListItem
             key={'dx'}
             button

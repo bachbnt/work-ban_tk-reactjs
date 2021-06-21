@@ -25,7 +25,10 @@ const colors = {
   drawerBackground: '#3445B4',
   itemBackground: '#042B5A',
   green: '#28A745',
+  greenDark: '#208537',
   red: '#DC3545',
+  redDark: '#b02a37',
+  productTitle: '#4A4A4A',
 };
 
 export default colors;

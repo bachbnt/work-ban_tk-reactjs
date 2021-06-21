@@ -7,7 +7,7 @@ const variables = {
   buttonMinWidth: 120,
 
   // height
-  headerHeight: 64,
+  headerHeight: 48,
   footerHeight: 48,
   toolbarMinHeight: 48,
 

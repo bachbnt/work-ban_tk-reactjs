@@ -9,24 +9,17 @@ export default makeStyles((theme: AppTheme) =>
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
-      paddingTop: theme.spacing(4),
-      paddingBottom: theme.spacing(4),
-      paddingLeft: theme.spacing(2),
-      paddingRight: theme.spacing(2),
     },
     container: {
       display: 'flex',
       alignItems: 'center',
       flexDirection: 'column',
       justifyContent: 'center',
-      width: 480,
+      width: '100%',
       marginLeft: 'auto',
       marginRight: 'auto',
       boxShadow: theme.variables.boxShadowPrimary,
       borderRadius: theme.variables.borderRadius,
-      [theme.breakpoints.down('xs')]: {
-        width: '100%',
-      },
     },
     paper: {
       width: '100%',
@@ -45,6 +38,20 @@ export default makeStyles((theme: AppTheme) =>
       color: theme.palette.primary.main,
       margin: 0,
       padding: 0,
+    },
+    openDrawer: {
+      width: window.innerWidth - theme.variables.drawerOpenWidth - 100,
+      transition: theme.transitions.create('width', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+    },
+    closeDrawer: {
+      width: window.innerWidth - theme.variables.drawerCloseWidth - 100,
+      transition: theme.transitions.create('width', {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
     },
   })
 );

@@ -33,6 +33,7 @@ export default makeStyles((theme: AppTheme) =>
     menuOpenButtonRoot: {
       backgroundColor: theme.palette.common.white,
       color: theme.palette.common.black,
+      marginLeft: theme.spacing(1),
     },
     menuOpenIconRoot: {
       transition: theme.transitions.create(['transform']),
@@ -56,6 +57,8 @@ export default makeStyles((theme: AppTheme) =>
     listItem: {
       overflow: 'hidden',
       borderRadius: theme.variables.borderRadius,
+      marginTop: theme.spacing(1),
+      marginBottom: theme.spacing(1),
     },
     button: {
       backgroundColor: theme.colors.primary,
@@ -68,6 +71,9 @@ export default makeStyles((theme: AppTheme) =>
     footer: {
       position: 'fixed',
       bottom: 0,
+    },
+    routeItem: {
+      height: 40,
     },
   })
 );
