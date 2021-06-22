@@ -12,4 +12,6 @@ export class Constant {
   static readonly PHONE_NUMBER_MAX_LENGTH = 11;
   static readonly PASSWORD_MIN_LENGTH = 6;
   static readonly PASSWORD_MAX_LENGTH = 20;
+
+  static readonly CODE_LENGTH = 6;
 }

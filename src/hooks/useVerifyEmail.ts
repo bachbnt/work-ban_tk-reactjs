@@ -15,7 +15,7 @@ const useVerifyEmail = () => {
   const dispatch = useDispatch();
   const auth = useAuth();
 
-  const getData = useCallback(
+  const verifyEmail = useCallback(
     async (code: string) => {
       if (!auth.isSignedIn()) {
         return;
@@ -37,7 +37,7 @@ const useVerifyEmail = () => {
     [t, auth, dispatch, history]
   );
 
-  return { getData };
+  return { verifyEmail };
 };
 
 export default useVerifyEmail;

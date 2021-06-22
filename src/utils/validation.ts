@@ -22,11 +22,16 @@ export const phoneSchema = yup
 
 export const passwordSchema = yup
   .string()
-  .min(6, i18nKey.password_min_length)
-  .max(20, i18nKey.password_max_length)
+  .min(Constant.PASSWORD_MIN_LENGTH, i18nKey.password_min_length)
+  .max(Constant.PASSWORD_MAX_LENGTH, i18nKey.password_max_length)
   .required(i18nKey.password_required);
 
 export const confirmPasswordSchema = yup
   .string()
   .oneOf([yup.ref('password')], i18nKey.password_not_match)
   .required(i18nKey.confirm_password_required);
+
+export const codeSchema = yup
+  .string()
+  .length(Constant.CODE_LENGTH, i18nKey.code_length)
+  .required(i18nKey.code_required);

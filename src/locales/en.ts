@@ -12,6 +12,7 @@ const en = {
   phone_number: 'phone number',
   password: 'password',
   confirm_password: 'confirm password',
+  code: 'code',
 
   // Message
   dont_have_an_account: "Don't have an account?",
@@ -23,7 +24,7 @@ const en = {
   success: 'Success',
   failure: 'Failure',
 
-  // Validate first name
+  // Validate username
   username_min_length: `username must contain at least ${Constant.USERNAME_MIN_LENGTH} characters`,
   username_max_length: `username must contain at most ${Constant.USERNAME_MAX_LENGTH} characters`,
   username_required: 'username is required',
@@ -46,6 +47,10 @@ const en = {
   password_not_match: 'confirm password does not match with password',
   password_not_one_of:
     'new password must be different from the current password',
+
+  // Validate code
+  code_length: `code must contain ${Constant.CODE_LENGTH} characters`,
+  code_required: 'code is required',
 };
 
 export default en;

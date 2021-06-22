@@ -25,6 +25,7 @@ import useAuth from 'src/hooks/useAuth';
 import useSignOut from 'src/hooks/useSignOut';
 import { TOGGLE_SIGN_IN } from 'src/redux/signInDialog/signInDialogAction';
 import { TOGGLE_SIGN_UP } from 'src/redux/signUpDialog/signUpDialogAction';
+import { TOGGLE_MONEY } from 'src/redux/moneyDialog/moneyDialogAction';
 
 const routes: DrawerRoute[] = [
   { title: 'facebook', name: RouteName.HOME },
@@ -42,8 +43,6 @@ const Drawer = (props: Props) => {
   const { signOut } = useSignOut();
   const userReducer = useSelector((state: RootState) => state.userReducer);
   const drawerReducer = useSelector((state: RootState) => state.drawerReducer);
-  const signInReducer = useSelector((state: RootState) => state.drawerReducer);
-  const signReducer = useSelector((state: RootState) => state.drawerReducer);
 
   const open = drawerReducer.open;
 
@@ -66,6 +65,10 @@ const Drawer = (props: Props) => {
   };
   const clickSignUp = () => {
     dispatch({ type: TOGGLE_SIGN_UP });
+  };
+
+  const clickMoney = () => {
+    dispatch({ type: TOGGLE_MONEY });
   };
 
   return (
@@ -120,7 +123,7 @@ const Drawer = (props: Props) => {
             key={'nt'}
             button
             className={clsx(classes.listItem, classes.button)}
-            onClick={() => {}}>
+            onClick={clickMoney}>
             <ListItemIcon>
               <LocalAtm />
             </ListItemIcon>

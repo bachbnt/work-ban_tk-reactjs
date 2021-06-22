@@ -389,8 +389,8 @@ const themes = {
     },
     MuiDialogTitle: {
       root: {
+        color: colors.black,
         '& > h2': {
-          color: theme.palette.primary.main,
           textAlign: 'center',
         },
       },

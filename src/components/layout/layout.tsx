@@ -10,6 +10,10 @@ import SignInDialog from '../signInDialog';
 import SignUpDialog from '../signUpDialog';
 import { TOGGLE_SIGN_IN } from 'src/redux/signInDialog/signInDialogAction';
 import { TOGGLE_SIGN_UP } from 'src/redux/signUpDialog/signUpDialogAction';
+import VerifyEmailDialog from '../verifyEmailDialog';
+import MoneyDialog from '../moneyDialog';
+import { TOGGLE_VERIFY_EMAIL } from 'src/redux/verifyEmailDialog/verifyEmailDialogAction';
+import { TOGGLE_MONEY } from 'src/redux/moneyDialog/moneyDialogAction';
 
 const Layout = (props: Props) => {
   const classes = useStyles();
@@ -24,21 +28,40 @@ const Layout = (props: Props) => {
   const signUpReducer = useSelector(
     (state: RootState) => state.signUpDialogReducer
   );
+  const verifyEmailReducer = useSelector(
+    (state: RootState) => state.verifyEmailDialogReducer
+  );
+  const moneyReducer = useSelector(
+    (state: RootState) => state.moneyDialogReducer
+  );
 
   const openDrawer = drawerReducer.open;
-
   const openSignIn = signInReducer.open;
   const openSignUp = signUpReducer.open;
+  const openVerifyEmail = verifyEmailReducer.open;
+  const openMoney = moneyReducer.open;
 
   const handleCloseSignIn = () => {
-    if (signInReducer.open) {
+    if (openSignIn) {
       dispatch({ type: TOGGLE_SIGN_IN });
     }
   };
 
   const handleCloseSignUp = () => {
-    if (signUpReducer.open) {
+    if (openSignUp) {
       dispatch({ type: TOGGLE_SIGN_UP });
+    }
+  };
+
+  const handleCloseVerifyEmail = () => {
+    if (openVerifyEmail) {
+      dispatch({ type: TOGGLE_VERIFY_EMAIL });
+    }
+  };
+
+  const handleCloseMoney = () => {
+    if (openMoney) {
+      dispatch({ type: TOGGLE_MONEY });
     }
   };
 
@@ -60,6 +83,11 @@ const Layout = (props: Props) => {
       </Box>
       <SignInDialog open={openSignIn} onClose={handleCloseSignIn} />
       <SignUpDialog open={openSignUp} onClose={handleCloseSignUp} />
+      <VerifyEmailDialog
+        open={openVerifyEmail}
+        onClose={handleCloseVerifyEmail}
+      />
+      <MoneyDialog open={openMoney} onClose={handleCloseMoney} />
     </Box>
   );
 };
