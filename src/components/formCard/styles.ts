@@ -27,9 +27,8 @@ export default makeStyles((theme: AppTheme) =>
       flex: '1 1 auto',
       textAlign: 'center',
       padding: theme.spacing(8),
-      [theme.breakpoints.down('md')]: {
-        paddingLeft: theme.spacing(4),
-        paddingRight: theme.spacing(4),
+      [theme.breakpoints.down('sm')]: {
+        padding: theme.spacing(4),
       },
     },
     title: {},
@@ -40,18 +39,24 @@ export default makeStyles((theme: AppTheme) =>
       padding: 0,
     },
     openDrawer: {
-      width: window.innerWidth - theme.variables.drawerOpenWidth - 100,
-      transition: theme.transitions.create('width', {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
+      width: 250,
+      [theme.breakpoints.up('sm')]: {
+        width: window.innerWidth - theme.variables.drawerOpenWidth - 100,
+        transition: theme.transitions.create('width', {
+          easing: theme.transitions.easing.sharp,
+          duration: theme.transitions.duration.enteringScreen,
+        }),
+      },
     },
     closeDrawer: {
-      width: window.innerWidth - theme.variables.drawerCloseWidth - 100,
-      transition: theme.transitions.create('width', {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
+      width: 250,
+      [theme.breakpoints.up('sm')]: {
+        width: window.innerWidth - theme.variables.drawerCloseWidth - 100,
+        transition: theme.transitions.create('width', {
+          easing: theme.transitions.easing.sharp,
+          duration: theme.transitions.duration.leavingScreen,
+        }),
+      },
     },
   })
 );
