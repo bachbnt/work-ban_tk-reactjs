@@ -198,6 +198,14 @@ const Home = (props: Props) => {
           {data.map((item) => (
             <ProductMobile data={item} />
           ))}
+          <Box mt={4} mb={2} className={clsx(classes.historyContainer)}>
+            <Typography className={classes.title} variant='h5'>
+              Lịch sử giao dịch
+            </Typography>
+          </Box>
+          {data2.map((item) => (
+            <OrderMobile data={item} />
+          ))}
         </Hidden>
       </FormCard>
     </Layout>

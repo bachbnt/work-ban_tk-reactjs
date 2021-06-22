@@ -20,7 +20,6 @@ const ProductMobile = (props: Props) => {
       <Box display='flex' flexDirection='column' my={2}>
         <img src={data.image} width={40} height={30} alt='product' />
         <Box
-          width='100%'
           display='flex'
           flexDirection='row'
           justifyContent='space-between'
