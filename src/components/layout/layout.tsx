@@ -14,6 +14,8 @@ import VerifyEmailDialog from '../verifyEmailDialog';
 import MoneyDialog from '../moneyDialog';
 import { TOGGLE_VERIFY_EMAIL } from 'src/redux/verifyEmailDialog/verifyEmailDialogAction';
 import { TOGGLE_MONEY } from 'src/redux/moneyDialog/moneyDialogAction';
+import ApiDialog from '../apiDialog';
+import { TOGGLE_API } from 'src/redux/apiDialog/apiDialogAction';
 
 const Layout = (props: Props) => {
   const classes = useStyles();
@@ -34,12 +36,14 @@ const Layout = (props: Props) => {
   const moneyReducer = useSelector(
     (state: RootState) => state.moneyDialogReducer
   );
+  const apiReducer = useSelector((state: RootState) => state.apiDialogReducer);
 
   const openDrawer = drawerReducer.open;
   const openSignIn = signInReducer.open;
   const openSignUp = signUpReducer.open;
   const openVerifyEmail = verifyEmailReducer.open;
   const openMoney = moneyReducer.open;
+  const openApi = apiReducer.open;
 
   const handleCloseSignIn = () => {
     if (openSignIn) {
@@ -62,6 +66,11 @@ const Layout = (props: Props) => {
   const handleCloseMoney = () => {
     if (openMoney) {
       dispatch({ type: TOGGLE_MONEY });
+    }
+  };
+  const handleCloseApi = () => {
+    if (openApi) {
+      dispatch({ type: TOGGLE_API });
     }
   };
 
@@ -88,6 +97,7 @@ const Layout = (props: Props) => {
         onClose={handleCloseVerifyEmail}
       />
       <MoneyDialog open={openMoney} onClose={handleCloseMoney} />
+      <ApiDialog open={openApi} onClose={handleCloseApi} />
     </Box>
   );
 };

@@ -1,3 +1,4 @@
+import { ApiDialogState } from './apiDialog/apiDialogState';
 import { DrawerState } from './drawer/drawerState';
 import { MoneyDialogState } from './moneyDialog/moneyDialogState';
 import { SignInDialogState } from './signInDialog/signInDialogState';
@@ -14,4 +15,5 @@ export interface RootState {
   signUpDialogReducer: SignUpDialogState;
   verifyEmailDialogReducer: VerifyEmailDialogState;
   moneyDialogReducer: MoneyDialogState;
+  apiDialogReducer: ApiDialogState;
 }

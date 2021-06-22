@@ -26,13 +26,7 @@ import useSignOut from 'src/hooks/useSignOut';
 import { TOGGLE_SIGN_IN } from 'src/redux/signInDialog/signInDialogAction';
 import { TOGGLE_SIGN_UP } from 'src/redux/signUpDialog/signUpDialogAction';
 import { TOGGLE_MONEY } from 'src/redux/moneyDialog/moneyDialogAction';
-
-const routes: DrawerRoute[] = [
-  { title: 'facebook', name: RouteName.HOME },
-  { title: 'gmail', name: RouteName.GMAIL },
-  { title: 'hotmail', name: RouteName.HOTMAIL },
-  { title: 'tích hợp API', name: RouteName.API },
-];
+import { TOGGLE_API } from 'src/redux/apiDialog/apiDialogAction';
 
 const Drawer = (props: Props) => {
   const classes = useStyles();
@@ -47,7 +41,18 @@ const Drawer = (props: Props) => {
   const open = drawerReducer.open;
 
   const currentRoute = history.location.pathname;
-
+  const routes: DrawerRoute[] = [
+    { title: 'facebook', name: RouteName.HOME },
+    { title: 'gmail', name: RouteName.GMAIL },
+    { title: 'hotmail', name: RouteName.HOTMAIL },
+    {
+      title: 'tích hợp API',
+      name: RouteName.API,
+      onClick: () => {
+        dispatch({ type: TOGGLE_API });
+      },
+    },
+  ];
   const toggleDrawer = () => {
     dispatch({ type: TOGGLE_DRAWER });
   };
@@ -166,9 +171,7 @@ const Drawer = (props: Props) => {
               button
               selected={currentRoute === route.name}
               className={clsx(classes.listItem, classes.routeItem)}
-              onClick={() => {
-                handleNavigate(route.name);
-              }}>
+              onClick={route.onClick}>
               <ListItemText primary={startCase(t(route.title))} />
             </ListItem>
           ))}

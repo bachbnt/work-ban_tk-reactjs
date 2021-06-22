@@ -11,7 +11,23 @@ export const usernameSchema = yup
 export const emailSchema = yup
   .string()
   .email(i18nKey.email_address_invalid)
-  .required(i18nKey.email_address_required);
+  .required(i18nKey.email_address_required)
+  .test({
+    exclusive: false,
+    test: function (value: any) {
+      if (!value) {
+        return true;
+      }
+      const { path, createError } = this;
+      if (!value.includes('@gmail.com')) {
+        return createError({
+          path,
+          message: 'email must be gmail',
+        });
+      }
+      return true;
+    },
+  });
 
 export const phoneSchema = yup
   .string()
