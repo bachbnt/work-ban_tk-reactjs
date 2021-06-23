@@ -17,6 +17,7 @@ class UserService {
         username: 'bach',
         email: 'bachbnt@gmail.com',
         role: UserRole.ADMIN,
+        money: 300,
         phone: '0123456789',
       },
     };

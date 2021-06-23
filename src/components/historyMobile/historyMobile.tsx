@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Props } from './props';
 import useStyles from './styles';
 
-const OrderMobile = (props: Props) => {
+const HistoryMobile = (props: Props) => {
   const classes = useStyles();
   const { t } = useTranslation();
   const { data } = props;
@@ -66,4 +66,4 @@ const OrderMobile = (props: Props) => {
   );
 };
 
-export default OrderMobile;
+export default HistoryMobile;

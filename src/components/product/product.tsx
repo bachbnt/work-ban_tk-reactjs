@@ -43,7 +43,7 @@ const Product = (props: Props) => {
             variant='outlined'
             type='number'
             defaultValue={0}
-            InputProps={{ inputProps: { min: 0 } }}
+            InputProps={{ inputProps: { min: 0, max: data.remain } }}
             onChange={(event) => {
               handleChange(event);
             }}

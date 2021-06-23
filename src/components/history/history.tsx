@@ -4,7 +4,7 @@ import Button from '../button';
 import { Props } from './props';
 import useStyles from './styles';
 
-const Order = (props: Props) => {
+const History = (props: Props) => {
   const classes = useStyles();
   const { t } = useTranslation();
   const { data } = props;
@@ -38,4 +38,4 @@ const Order = (props: Props) => {
   );
 };
 
-export default Order;
+export default History;
