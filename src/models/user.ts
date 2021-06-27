@@ -2,9 +2,10 @@ import { UserRole } from './userRole';
 
 export interface User {
   _id: string;
+  isVerified: boolean;
   username: string;
   email: string;
   phone: string;
-  money: number;
-  role: UserRole;
+  balance: number;
+  role: UserRole[];
 }

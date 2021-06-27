@@ -1,33 +1,21 @@
-import {
-  GetProfileRequest,
-  GetProfileResponse,
-} from 'src/models/reqres/getProfile';
-import {
-  VerifyEmailRequest,
-  VerifyEmailResponse,
-} from 'src/models/reqres/verifyEmail';
-import { UserRole } from 'src/models/userRole';
+import { Endpoint } from 'src/configs/endpoint';
+import { ResendEmailRequest } from 'src/models/reqres/resendEmail';
+import { VerifyEmailRequest } from 'src/models/reqres/verifyEmail';
+import { apiClient } from './apiClient';
 
 class UserService {
-  async getProfile(request: GetProfileRequest): Promise<GetProfileResponse> {
-    return {
-      status: 200,
-      data: {
-        _id: '',
-        username: 'bach',
-        email: 'bachbnt@gmail.com',
-        role: UserRole.ADMIN,
-        money: 300,
-        phone: '0123456789',
-      },
-    };
+  async resendEmail(request: ResendEmailRequest): Promise<any> {
+    const result = await apiClient.get(Endpoint.RESEND_EMAIL);
+
+    return result;
   }
 
-  async verifyEmail(request: VerifyEmailRequest): Promise<VerifyEmailResponse> {
-    return {
-      status: 200,
-      data: {},
-    };
+  async verifyEmail(request: VerifyEmailRequest): Promise<any> {
+    const result = await apiClient.get(Endpoint.VERIFY_EMAIL, {
+      params: { code: request.code },
+    });
+
+    return result;
   }
 }
 

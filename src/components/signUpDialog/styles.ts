@@ -9,8 +9,6 @@ export default makeStyles((theme: AppTheme) =>
       paddingBottom: theme.spacing(4),
       paddingLeft: theme.spacing(2),
       paddingRight: theme.spacing(2),
-      marginLeft: theme.spacing(4),
-      marginRight: theme.spacing(4),
       display: 'flex',
       alignItems: 'center',
       flexDirection: 'column',

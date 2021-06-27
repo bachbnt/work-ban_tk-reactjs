@@ -149,7 +149,7 @@ const Drawer = (props: Props) => {
           </ListItem>
           <Box py={0.5} />
           <ListItem
-            key={'dn'}
+            key={'dk'}
             button
             className={clsx(classes.listItem, classes.button)}
             onClick={clickSignUp}>

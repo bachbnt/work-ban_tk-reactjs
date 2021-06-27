@@ -7,7 +7,8 @@ import { RouteName } from 'src/routes/routeName';
 import { toast } from 'src/utils/toast';
 import useAuth from './useAuth';
 import { userService } from 'src/services/userService';
-import { i18nKey } from 'src/locales/i18n';
+import { TOGGLE_VERIFY_EMAIL } from 'src/redux/verifyEmailDialog/verifyEmailDialogAction';
+import { SET_USER } from 'src/redux/user/userAction';
 
 const useVerifyEmail = () => {
   const { t } = useTranslation();
@@ -20,12 +21,13 @@ const useVerifyEmail = () => {
       if (!auth.isSignedIn()) {
         return;
       }
-
       dispatch({ type: SHOW_SPINNER });
       try {
-        const response = await userService.verifyEmail({ code });
-        if (response.status === 200) {
-          toast.error(t(i18nKey.success));
+        const result = await userService.verifyEmail({ code });
+        if (result.status === 200) {
+          toast.error('Xác thực thành công');
+          dispatch({ type: TOGGLE_VERIFY_EMAIL });
+          dispatch({ type: SET_USER, payload: result.data.user });
           history.replace(RouteName.HOME);
         }
       } catch (error) {

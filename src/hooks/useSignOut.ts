@@ -6,6 +6,7 @@ import { HIDE_SPINNER, SHOW_SPINNER } from 'src/redux/spinner/spinnerAction';
 import { RouteName } from 'src/routes/routeName';
 import { toast } from 'src/utils/toast';
 import useAuth from './useAuth';
+import { SET_USER } from 'src/redux/user/userAction';
 
 const useSignOut = () => {
   const { t } = useTranslation();
@@ -17,6 +18,7 @@ const useSignOut = () => {
     dispatch({ type: SHOW_SPINNER });
     try {
       await auth.signOut({});
+      dispatch({ type: SET_USER, payload: null });
       history.replace(RouteName.SIGN_IN);
     } catch (error) {
       toast.error(t(error.message));

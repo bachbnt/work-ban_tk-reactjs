@@ -1,3 +1,4 @@
+import { User } from '../user';
 import { BaseRequest, BaseResponse } from './base';
 
 export interface SignUpRequest extends BaseRequest {
@@ -7,4 +8,7 @@ export interface SignUpRequest extends BaseRequest {
   password: string;
 }
 
-export interface SignUpResponse extends BaseResponse {}
+export interface SignUpResponse extends BaseResponse {
+  access_token: string;
+  user: User;
+}

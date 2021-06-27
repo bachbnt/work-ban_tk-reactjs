@@ -1,4 +1,4 @@
-import { Token } from 'src/models/token';
+import { User } from '../user';
 import { BaseRequest, BaseResponse } from './base';
 
 export interface SignInRequest extends BaseRequest {
@@ -7,5 +7,6 @@ export interface SignInRequest extends BaseRequest {
 }
 
 export interface SignInResponse extends BaseResponse {
-  data: Token;
+  access_token: string;
+  user: User;
 }
