@@ -27,7 +27,7 @@ const useVerifyEmail = () => {
         if (result.status === 200) {
           toast.error('Xác thực thành công');
           dispatch({ type: TOGGLE_VERIFY_EMAIL });
-          dispatch({ type: SET_USER, payload: result.data.user });
+          dispatch({ type: SET_USER, payload: result.data });
           history.replace(RouteName.HOME);
         }
       } catch (error) {

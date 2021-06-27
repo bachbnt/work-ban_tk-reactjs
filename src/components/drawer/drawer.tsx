@@ -114,14 +114,14 @@ const Drawer = (props: Props) => {
       <Box px={2}>
         <Divider />
       </Box>
-      {auth.isSignedIn() ? (
+      {auth.isSignedIn() && userReducer?.isVerified ? (
         <Box className={classes.container} px={open ? 4 : 3} py={3}>
           <Typography className={clsx(classes.name)} variant='h5'>
-            {userReducer?.email}
+            {userReducer?.username}
           </Typography>
           <Box my={2}>
             <Typography variant='h4' color='primary'>
-              0 VND
+              {`${userReducer.balance} VND`}
             </Typography>
           </Box>
           <ListItem
@@ -177,7 +177,7 @@ const Drawer = (props: Props) => {
           ))}
         </List>
       </Box>
-      {auth.isSignedIn() && (
+      {auth.isSignedIn() && userReducer?.isVerified && (
         <Box className={clsx(classes.container)} px={open ? 4 : 3} py={3}>
           <ListItem
             key={'dx'}

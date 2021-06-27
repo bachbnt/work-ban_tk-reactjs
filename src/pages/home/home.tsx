@@ -6,13 +6,11 @@ import Product from 'src/components/product';
 import ProductMobile from 'src/components/productMobile';
 import Order from 'src/components/history';
 import OrderMobile from 'src/components/historyMobile';
-import { i18nKey } from 'src/locales/i18n';
 import { Props } from './props';
 import useStyles from './styles';
 import clsx from 'clsx';
-import { useSelector } from 'react-redux';
-import { RootState } from 'src/redux/rootState';
 import { Hidden } from '@material-ui/core';
+import useBootstrap from 'src/hooks/useBootstrap';
 
 const data = [
   {
@@ -100,7 +98,7 @@ const data2 = [
 const Home = (props: Props) => {
   const classes = useStyles();
   const { t } = useTranslation();
-  const drawerReducer = useSelector((state: RootState) => state.drawerReducer);
+  useBootstrap();
 
   return (
     <Layout main>

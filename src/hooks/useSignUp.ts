@@ -35,14 +35,11 @@ const useSignUp = () => {
         if (result.status === 201) {
           toast.success('Đăng ký thành công');
           dispatch({ type: TOGGLE_SIGN_UP });
-          debugger;
           if (result.data.user.isVerified) {
             dispatch({ type: SET_USER, payload: result.data.user });
-            debugger;
             history.replace(RouteName.HOME);
           } else {
             await resendEmail();
-            debugger;
           }
         }
       } catch (error) {
