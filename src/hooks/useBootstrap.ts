@@ -15,7 +15,7 @@ const useBootstrap = () => {
   const { signOut } = useSignOut();
 
   useEffect(() => {
-    if (auth.isSignedIn() && userReducer?.isVerified) {
+    if (auth.isSignedIn() && !userReducer?.isVerified) {
       signOut();
     }
   }, [auth, signOut, userReducer]);
