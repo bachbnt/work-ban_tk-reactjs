@@ -17,6 +17,7 @@
     "axios": "^0.21.1",
     "clsx": "^1.1.1",
     "date-fns": "^2.21.3",
+    "dompurify": "^2.2.9",
     "i18next": "^20.2.4",
     "lodash": "^4.17.21",
     "react": "^17.0.1",
@@ -62,6 +63,7 @@
     ]
   },
   "devDependencies": {
+    "@types/dompurify": "^2.2.2",
     "@types/lodash": "^4.14.170",
     "@types/react-router-dom": "^5.1.7",
     "@types/redux-persist": "^4.3.1",

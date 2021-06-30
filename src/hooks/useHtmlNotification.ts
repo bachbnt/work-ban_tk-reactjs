@@ -8,7 +8,7 @@ import { htmlService } from 'src/services/htmlService';
 const useHtmlNotification = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const [data, setData] = useState(null);
+  const [data, setData] = useState('<div/>');
 
   const getData = useCallback(async () => {
     dispatch({ type: SHOW_SPINNER });
