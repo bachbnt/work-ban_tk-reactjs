@@ -27,7 +27,7 @@ const ProductMobile = (props: Props) => {
   };
 
   const handleChange = (event: any) => {
-    setTotal(event.target.value * data.price);
+    setTotal(event.target.value * data.unitPrice);
   };
 
   return (
@@ -41,7 +41,7 @@ const ProductMobile = (props: Props) => {
           alignItems='center'
           mt={2}>
           <Typography className={classes.leading}>Quốc gia</Typography>
-          <Typography>{data.country}</Typography>
+          <Typography>{data.countryCode}</Typography>
         </Box>
         <Box
           display='flex'
@@ -50,7 +50,7 @@ const ProductMobile = (props: Props) => {
           alignItems='center'
           my={1}>
           <Typography className={classes.leading}>Đơn giá</Typography>
-          <Typography>{data.price}</Typography>
+          <Typography>{data.unitPrice}</Typography>
         </Box>
         <Box
           display='flex'
@@ -60,7 +60,7 @@ const ProductMobile = (props: Props) => {
           my={1}>
           <Typography className={classes.leading}>Mô tả</Typography>
           <Box width={120}>
-            <Typography align='right'>{data.description}</Typography>
+            <Typography align='right'>{data.describe}</Typography>
           </Box>
         </Box>
         <Box
@@ -69,7 +69,7 @@ const ProductMobile = (props: Props) => {
           justifyContent='space-between'
           alignItems='center'>
           <Typography className={classes.leading}>Còn lại</Typography>
-          <Typography>{data.remain}</Typography>
+          <Typography>{0}</Typography>
         </Box>
         <Box
           display='flex'
@@ -86,7 +86,7 @@ const ProductMobile = (props: Props) => {
               variant='outlined'
               type='number'
               defaultValue={0}
-              InputProps={{ inputProps: { min: 0, max: data.remain } }}
+              InputProps={{ inputProps: { min: 0, max: 0 } }}
               onChange={(event) => {
                 handleChange(event);
               }}
@@ -105,7 +105,9 @@ const ProductMobile = (props: Props) => {
         <Box textAlign='right'>
           <Button
             onClick={clickBuy}
-            classes={{ root: classes.button }}>{`Mua ${data.country}`}</Button>
+            classes={{
+              root: classes.button,
+            }}>{`Mua ${data.countryCode}`}</Button>
         </Box>
       </Box>
       <Divider classes={{ root: classes.divider }} />

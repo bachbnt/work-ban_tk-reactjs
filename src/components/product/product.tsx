@@ -27,7 +27,7 @@ const Product = (props: Props) => {
   };
 
   const handleChange = (event: any) => {
-    setTotal(event.target.value * data.price);
+    setTotal(event.target.value * data.unitPrice);
   };
 
   return (
@@ -39,16 +39,16 @@ const Product = (props: Props) => {
         justifyContent='space-between'>
         <img src={data.image} width={40} height={30} alt='product' />
         <Box width={40} mx={1}>
-          <Typography>{data.country}</Typography>
+          <Typography>{data.countryCode}</Typography>
         </Box>
         <Box width={100} mx={1}>
-          <Typography>{data.price}</Typography>
+          <Typography>{data.unitPrice}</Typography>
         </Box>
         <Box flex={1} mx={1} textAlign='left'>
-          <Typography>{data.description}</Typography>
+          <Typography>{data.describe}</Typography>
         </Box>
         <Box width={40} mx={1}>
-          <Typography>{data.remain}</Typography>
+          <Typography>{0}</Typography>
         </Box>
         <Box width={100} mx={1}>
           <TextField
@@ -58,7 +58,7 @@ const Product = (props: Props) => {
             variant='outlined'
             type='number'
             defaultValue={0}
-            InputProps={{ inputProps: { min: 0, max: data.remain } }}
+            InputProps={{ inputProps: { min: 0, max: 0 } }}
             onChange={(event) => {
               handleChange(event);
             }}
@@ -69,7 +69,9 @@ const Product = (props: Props) => {
         </Box>
         <Button
           onClick={clickBuy}
-          classes={{ root: classes.button }}>{`Mua ${data.country}`}</Button>
+          classes={{
+            root: classes.button,
+          }}>{`Mua ${data.countryCode}`}</Button>
       </Box>
       <Divider classes={{ root: classes.divider }} />
     </Box>

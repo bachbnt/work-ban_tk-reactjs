@@ -10,7 +10,6 @@ import {
   ListItemText,
 } from '@material-ui/core';
 import { Assignment, ExitToApp, LocalAtm, MenuOpen } from '@material-ui/icons';
-import { useHistory } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import clsx from 'clsx';
@@ -18,8 +17,7 @@ import { startCase } from 'lodash';
 import { Config } from 'src/configs/config';
 import { RootState } from 'src/redux/rootState';
 import { TOGGLE_DRAWER } from 'src/redux/drawer/drawerAction';
-import { RouteName } from 'src/routes/routeName';
-import { Props, DrawerRoute } from './props';
+import { Props } from './props';
 import useStyles from './styles';
 import useAuth from 'src/hooks/useAuth';
 import useSignOut from 'src/hooks/useSignOut';
@@ -27,38 +25,31 @@ import { TOGGLE_SIGN_IN } from 'src/redux/signInDialog/signInDialogAction';
 import { TOGGLE_SIGN_UP } from 'src/redux/signUpDialog/signUpDialogAction';
 import { TOGGLE_MONEY } from 'src/redux/moneyDialog/moneyDialogAction';
 import { TOGGLE_API } from 'src/redux/apiDialog/apiDialogAction';
+import useCategoryList from 'src/hooks/useCategoryList';
+import { Category } from 'src/models/category';
+import { SET_CATEGORY } from 'src/redux/category/cateroryAction';
 
 const Drawer = (props: Props) => {
   const classes = useStyles();
   const { t } = useTranslation();
-  const history = useHistory();
   const dispatch = useDispatch();
   const auth = useAuth();
   const { signOut } = useSignOut();
+  const { data: categories } = useCategoryList();
   const userReducer = useSelector((state: RootState) => state.userReducer);
   const drawerReducer = useSelector((state: RootState) => state.drawerReducer);
+  const categoryReducer = useSelector(
+    (state: RootState) => state.categoryReducer
+  );
 
   const open = drawerReducer.open;
 
-  const currentRoute = history.location.pathname;
-  const routes: DrawerRoute[] = [
-    { title: 'facebook', name: RouteName.HOME },
-    { title: 'gmail', name: RouteName.GMAIL },
-    { title: 'hotmail', name: RouteName.HOTMAIL },
-    {
-      title: 'tích hợp API',
-      name: RouteName.API,
-      onClick: () => {
-        dispatch({ type: TOGGLE_API });
-      },
-    },
-  ];
   const toggleDrawer = () => {
     dispatch({ type: TOGGLE_DRAWER });
   };
 
-  const handleNavigate = (route: RouteName) => {
-    history.push(route);
+  const handleNavigate = (category: Category) => {
+    dispatch({ type: SET_CATEGORY, payload: category.name });
   };
 
   const handleSignOut = async () => {
@@ -165,16 +156,27 @@ const Drawer = (props: Props) => {
       </Box>
       <Box px={2} py={1}>
         <List>
-          {routes.map((route, index) => (
+          {categories.map((item, index) => (
             <ListItem
               key={index}
               button
-              selected={currentRoute === route.name}
+              selected={item.name === categoryReducer}
               className={clsx(classes.listItem, classes.routeItem)}
-              onClick={route.onClick}>
-              <ListItemText primary={startCase(t(route.title))} />
+              onClick={() => {
+                handleNavigate(item);
+              }}>
+              <ListItemText primary={startCase(t(item.name))} />
             </ListItem>
           ))}
+          <ListItem
+            key={'api'}
+            button
+            className={clsx(classes.listItem, classes.routeItem)}
+            onClick={() => {
+              dispatch({ type: TOGGLE_API });
+            }}>
+            <ListItemText primary={startCase(t('tích hợp API'))} />
+          </ListItem>
         </List>
       </Box>
       {auth.isSignedIn() && userReducer?.isVerified && (

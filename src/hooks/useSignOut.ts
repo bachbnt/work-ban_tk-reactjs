@@ -19,7 +19,7 @@ const useSignOut = () => {
     try {
       await auth.signOut({});
       dispatch({ type: SET_USER, payload: null });
-      history.replace(RouteName.SIGN_IN);
+      history.replace(RouteName.HOME);
     } catch (error) {
       toast.error(t(error.message));
     } finally {

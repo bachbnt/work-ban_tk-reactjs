@@ -8,6 +8,9 @@ import useHtmlNotification from 'src/hooks/useHtmlNotification';
 import DOMPurify from 'dompurify';
 import HistoryList from 'src/components/historyList';
 import ProductList from 'src/components/productList';
+import { useSelector } from 'react-redux';
+import { RootState } from 'src/redux/rootState';
+import useCountryList from 'src/hooks/useCountryList';
 
 const data = [
   {
@@ -97,12 +100,16 @@ const Home = (props: Props) => {
   const { t } = useTranslation();
   useBootstrap();
   const { data: html } = useHtmlNotification();
+  const categoryReducer = useSelector(
+    (state: RootState) => state.categoryReducer
+  );
+  const { data: countries } = useCountryList(categoryReducer);
 
   return (
     <Layout main>
       <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(html) }} />
       <FormCard>
-        <ProductList data={data} />
+        <ProductList data={countries} />
         <HistoryList data={data2} />
       </FormCard>
     </Layout>

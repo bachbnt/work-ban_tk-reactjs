@@ -1,4 +1,5 @@
 import { ApiDialogState } from './apiDialog/apiDialogState';
+import { CategoryState } from './category/categoryState';
 import { DrawerState } from './drawer/drawerState';
 import { MoneyDialogState } from './moneyDialog/moneyDialogState';
 import { SignInDialogState } from './signInDialog/signInDialogState';
@@ -16,4 +17,5 @@ export interface RootState {
   verifyEmailDialogReducer: VerifyEmailDialogState;
   moneyDialogReducer: MoneyDialogState;
   apiDialogReducer: ApiDialogState;
+  categoryReducer: CategoryState;
 }

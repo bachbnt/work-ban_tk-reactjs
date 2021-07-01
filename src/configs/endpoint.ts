@@ -6,4 +6,6 @@ export class Endpoint {
   static readonly RESEND_EMAIL = '/users/verify/resend-email';
   static readonly VERIFY_EMAIL = '/users/verify';
   static readonly HTML = '/html';
+  static readonly CATEGORY = '/category';
+  static readonly COUNTRY = '/country';
 }

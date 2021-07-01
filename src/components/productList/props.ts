@@ -1,5 +1,5 @@
-import { Product } from 'src/models/product';
+import { Country } from 'src/models/country';
 
 export interface Props {
-  data: Product[];
+  data: Country[];
 }

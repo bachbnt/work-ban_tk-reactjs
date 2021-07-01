@@ -8,13 +8,6 @@ export interface RouteProps {
 
 export const publics: RouteProps[] = [
   {
-    path: RouteName.SIGN_IN,
-    component: 'signIn',
-  },
-];
-
-export const privates: RouteProps[] = [
-  {
     path: RouteName.HOME,
     component: 'home',
   },

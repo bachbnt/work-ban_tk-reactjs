@@ -6,3 +6,4 @@ export * from './signUpDialog/signUpDialogReducer';
 export * from './verifyEmailDialog/verifyEmailDialogReducer';
 export * from './moneyDialog/moneyDialogReducer';
 export * from './apiDialog/apiDialogReducer';
+export * from './category/categoryReducer';
