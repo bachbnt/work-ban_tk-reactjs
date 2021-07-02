@@ -7,6 +7,8 @@ import { RouteName } from 'src/routes/routeName';
 import { toast } from 'src/utils/toast';
 import useAuth from './useAuth';
 import { SET_USER } from 'src/redux/user/userAction';
+import { SET_CATEGORY } from 'src/redux/category/cateroryAction';
+import { SET_COUNTRY_LIST } from 'src/redux/countryList/countryListAction';
 
 const useSignOut = () => {
   const { t } = useTranslation();
@@ -19,6 +21,8 @@ const useSignOut = () => {
     try {
       await auth.signOut({});
       dispatch({ type: SET_USER, payload: null });
+      dispatch({ type: SET_CATEGORY, payload: null });
+      dispatch({ type: SET_COUNTRY_LIST, payload: null });
       history.replace(RouteName.HOME);
     } catch (error) {
       toast.error(t(error.message));

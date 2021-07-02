@@ -48,7 +48,7 @@ const Product = (props: Props) => {
           <Typography>{data.describe}</Typography>
         </Box>
         <Box width={40} mx={1}>
-          <Typography>{0}</Typography>
+          <Typography>{data.quality}</Typography>
         </Box>
         <Box width={100} mx={1}>
           <TextField
@@ -58,7 +58,7 @@ const Product = (props: Props) => {
             variant='outlined'
             type='number'
             defaultValue={0}
-            InputProps={{ inputProps: { min: 0, max: 0 } }}
+            InputProps={{ inputProps: { min: 0, max: data.quality } }}
             onChange={(event) => {
               handleChange(event);
             }}

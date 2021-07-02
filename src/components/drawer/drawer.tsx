@@ -28,6 +28,7 @@ import { TOGGLE_API } from 'src/redux/apiDialog/apiDialogAction';
 import useCategoryList from 'src/hooks/useCategoryList';
 import { Category } from 'src/models/category';
 import { SET_CATEGORY } from 'src/redux/category/cateroryAction';
+import useCountryList from 'src/hooks/useCountryList';
 
 const Drawer = (props: Props) => {
   const classes = useStyles();
@@ -41,6 +42,7 @@ const Drawer = (props: Props) => {
   const categoryReducer = useSelector(
     (state: RootState) => state.categoryReducer
   );
+  const { getData: getCountryList } = useCountryList();
 
   const open = drawerReducer.open;
 
@@ -48,8 +50,12 @@ const Drawer = (props: Props) => {
     dispatch({ type: TOGGLE_DRAWER });
   };
 
-  const handleNavigate = (category: Category) => {
-    dispatch({ type: SET_CATEGORY, payload: category.name });
+  const handleNavigate = async (category: Category) => {
+    dispatch({
+      type: SET_CATEGORY,
+      payload: { id: category._id, name: category.name },
+    });
+    await getCountryList(category._id, 1);
   };
 
   const handleSignOut = async () => {
@@ -160,7 +166,7 @@ const Drawer = (props: Props) => {
             <ListItem
               key={index}
               button
-              selected={item.name === categoryReducer}
+              selected={item._id === categoryReducer?.id}
               className={clsx(classes.listItem, classes.routeItem)}
               onClick={() => {
                 handleNavigate(item);

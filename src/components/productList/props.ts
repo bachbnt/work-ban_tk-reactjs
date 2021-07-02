@@ -1,5 +1,3 @@
 import { Country } from 'src/models/country';
 
-export interface Props {
-  data: Country[];
-}
+export interface Props {}

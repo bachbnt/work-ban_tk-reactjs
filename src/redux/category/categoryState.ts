@@ -1,3 +1,3 @@
-export type CategoryState = string | null;
+export type CategoryState = { id: string; name: string } | null;
 
-export const initialState: CategoryState = null;
+export const initialState: CategoryState = { id: '', name: '' };

@@ -69,7 +69,7 @@ const ProductMobile = (props: Props) => {
           justifyContent='space-between'
           alignItems='center'>
           <Typography className={classes.leading}>Còn lại</Typography>
-          <Typography>{0}</Typography>
+          <Typography>{data.quality}</Typography>
         </Box>
         <Box
           display='flex'
@@ -86,7 +86,7 @@ const ProductMobile = (props: Props) => {
               variant='outlined'
               type='number'
               defaultValue={0}
-              InputProps={{ inputProps: { min: 0, max: 0 } }}
+              InputProps={{ inputProps: { min: 0, max: data.quality } }}
               onChange={(event) => {
                 handleChange(event);
               }}
