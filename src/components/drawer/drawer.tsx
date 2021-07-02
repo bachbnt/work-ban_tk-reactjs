@@ -29,6 +29,7 @@ import useCategoryList from 'src/hooks/useCategoryList';
 import { Category } from 'src/models/category';
 import { SET_CATEGORY } from 'src/redux/category/cateroryAction';
 import useCountryList from 'src/hooks/useCountryList';
+import useBankInfo from 'src/hooks/useBankInfo';
 
 const Drawer = (props: Props) => {
   const classes = useStyles();
@@ -43,6 +44,7 @@ const Drawer = (props: Props) => {
     (state: RootState) => state.categoryReducer
   );
   const { getData: getCountryList } = useCountryList();
+  const { data: bankInfo } = useBankInfo();
 
   const open = drawerReducer.open;
 

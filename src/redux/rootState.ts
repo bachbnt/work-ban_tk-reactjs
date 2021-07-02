@@ -1,4 +1,5 @@
 import { ApiDialogState } from './apiDialog/apiDialogState';
+import { BankInfoState } from './bankInfo/bankInfoState';
 import { CategoryState } from './category/categoryState';
 import { CountryListState } from './countryList/countryListState';
 import { DrawerState } from './drawer/drawerState';
@@ -20,4 +21,5 @@ export interface RootState {
   apiDialogReducer: ApiDialogState;
   categoryReducer: CategoryState;
   countryListReducer: CountryListState;
+  bankInfoReducer: BankInfoState;
 }

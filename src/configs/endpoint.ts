@@ -8,4 +8,5 @@ export class Endpoint {
   static readonly HTML = '/html';
   static readonly CATEGORY = '/category';
   static readonly COUNTRY = '/country';
+  static readonly BANK = '/admin/bank-info';
 }
