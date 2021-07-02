@@ -21,9 +21,9 @@ const useCountryList = () => {
         setData(result.data);
         dispatch({
           type: SET_COUNTRY_LIST,
-          payload: { data: result.data, total: result.totalPage },
+          payload: { data: result.data, total: result.total },
         });
-        setTotalPage(result.totalPage);
+        setTotalPage(result.total);
       } catch (error) {
         toast.error(t(error.message));
       } finally {
