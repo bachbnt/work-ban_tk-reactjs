@@ -8,4 +8,3 @@ export * from './moneyDialog/moneyDialogReducer';
 export * from './apiDialog/apiDialogReducer';
 export * from './category/categoryReducer';
 export * from './countryList/countryListReducer';
-export * from './bankInfo/bankInfoReducer';

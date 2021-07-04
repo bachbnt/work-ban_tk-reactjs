@@ -8,6 +8,7 @@ import {
 } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import useBankInfo from 'src/hooks/useBankInfo';
 import { RootState } from 'src/redux/rootState';
 import { Props } from './props';
 import useStyles from './styles';
@@ -16,9 +17,7 @@ const MoneyDialog = (props: Props) => {
   const classes = useStyles();
   const { t } = useTranslation();
   const { onClose, open } = props;
-  const bankInfoReducer = useSelector(
-    (state: RootState) => state.bankInfoReducer
-  );
+  const { data: bankInfo } = useBankInfo();
 
   return (
     <Dialog onClose={onClose} open={open}>
@@ -67,7 +66,7 @@ const MoneyDialog = (props: Props) => {
             </Grid>
             <Grid item xs={6}>
               <Typography className={classes.boldText}>
-                {bankInfoReducer?.bankName}
+                {bankInfo?.bankName}
               </Typography>
             </Grid>
           </Grid>
@@ -78,7 +77,7 @@ const MoneyDialog = (props: Props) => {
             </Grid>
             <Grid item xs={6}>
               <Typography className={classes.boldText}>
-                {bankInfoReducer?.accountNumber}
+                {bankInfo?.accountNumber}
               </Typography>
             </Grid>
           </Grid>
@@ -89,7 +88,7 @@ const MoneyDialog = (props: Props) => {
             </Grid>
             <Grid item xs={6}>
               <Typography className={classes.boldText}>
-                {bankInfoReducer?.accountName}
+                {bankInfo?.accountName}
               </Typography>
             </Grid>
           </Grid>
@@ -100,7 +99,7 @@ const MoneyDialog = (props: Props) => {
             </Grid>
             <Grid item xs={6}>
               <Typography className={classes.boldText}>
-                {bankInfoReducer?.transferContent}
+                {bankInfo?.transferContent}
               </Typography>
             </Grid>
           </Grid>

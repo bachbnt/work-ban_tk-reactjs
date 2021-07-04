@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { HIDE_SPINNER, SHOW_SPINNER } from 'src/redux/spinner/spinnerAction';
 import { toast } from 'src/utils/toast';
-import { SET_BANK_INFO } from 'src/redux/bankInfo/bankInfoAction';
 import { bankService } from 'src/services/bankService';
 import { BankInfo } from 'src/models/bankInfo';
 
@@ -17,10 +16,6 @@ const useBankInfo = () => {
     try {
       const result = await bankService.getInfo();
       setData(result.data);
-      dispatch({
-        type: SET_BANK_INFO,
-        payload: result.data,
-      });
     } catch (error) {
       toast.error(t(error.message));
     } finally {
