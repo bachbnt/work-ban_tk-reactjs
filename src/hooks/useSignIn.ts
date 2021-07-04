@@ -27,11 +27,15 @@ const useSignIn = () => {
         if (result.status === 201) {
           toast.success('Đăng nhập thành công');
           dispatch({ type: TOGGLE_SIGN_IN });
-          if (result.data.user.isVerified) {
-            dispatch({ type: SET_USER, payload: result.data.user });
-            history.replace(RouteName.HOME);
+          if (auth.isAdmin()) {
+            history.replace(RouteName.UPLOAD_PRODUCT);
           } else {
-            await resendEmail();
+            if (result.data.user.isVerified) {
+              dispatch({ type: SET_USER, payload: result.data.user });
+              history.replace(RouteName.HOME);
+            } else {
+              await resendEmail();
+            }
           }
         }
       } catch (error) {

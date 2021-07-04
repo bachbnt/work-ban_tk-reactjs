@@ -6,9 +6,35 @@ export interface RouteProps {
   exact?: boolean;
 }
 
-export const publics: RouteProps[] = [
+export const users: RouteProps[] = [
   {
     path: RouteName.HOME,
     component: 'home',
+  },
+];
+
+export const admins: RouteProps[] = [
+  {
+    path: RouteName.ADMIN,
+    component: 'admin',
+  },
+];
+
+export const authedAdmins: RouteProps[] = [
+  {
+    path: RouteName.UPLOAD_PRODUCT,
+    component: 'adminUploadProduct',
+  },
+  {
+    path: RouteName.USER_MANAGEMENT,
+    component: 'adminUserManagement',
+  },
+  {
+    path: RouteName.PRODUCT_MANAGEMENT,
+    component: 'adminProductManagement',
+  },
+  {
+    path: RouteName.CONFIG,
+    component: 'adminConfig',
   },
 ];
