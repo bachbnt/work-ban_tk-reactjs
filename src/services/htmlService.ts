@@ -2,10 +2,15 @@ import { Endpoint } from 'src/configs/endpoint';
 import { apiClient } from './apiClient';
 
 class HtmlService {
-  async getHtmlNotification(): Promise<any> {
+  async getNotification(): Promise<any> {
     const result = await apiClient.get(Endpoint.HTML);
 
     return result;
+  }
+
+  async putNotification(html: string): Promise<any> {
+    const result = await apiClient.put(Endpoint.HTML);
+    return {};
   }
 }
 

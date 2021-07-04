@@ -51,3 +51,5 @@ export const codeSchema = yup
   .string()
   .length(Constant.CODE_LENGTH, i18nKey.code_length)
   .required(i18nKey.code_required);
+
+export const otherSchema = yup.string().required('Không được trống');

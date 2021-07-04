@@ -13,7 +13,7 @@ const useHtmlNotification = () => {
   const getData = useCallback(async () => {
     dispatch({ type: SHOW_SPINNER });
     try {
-      const result = await htmlService.getHtmlNotification();
+      const result = await htmlService.getNotification();
       setData(result.data);
     } catch (error) {
       toast.error(t(error.message));

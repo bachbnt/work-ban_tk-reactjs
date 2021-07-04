@@ -1,8 +1,10 @@
-import { Typography } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import LayoutAdmin from 'src/components/layoutAdmin';
 import { Props } from './props';
 import useStyles from './styles';
+import HtmlForm from './htmlForm';
+import BankInfoForm from './bankInfoForm';
+import { Box } from '@material-ui/core';
 
 const AdminConfig = (props: Props) => {
   const classes = useStyles();
@@ -10,7 +12,9 @@ const AdminConfig = (props: Props) => {
 
   return (
     <LayoutAdmin main>
-      <Typography>Admin Config </Typography>
+      <HtmlForm />
+      <Box my={4} />
+      <BankInfoForm />
     </LayoutAdmin>
   );
 };

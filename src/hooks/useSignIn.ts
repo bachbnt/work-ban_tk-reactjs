@@ -23,7 +23,6 @@ const useSignIn = () => {
       dispatch({ type: SHOW_SPINNER });
       try {
         const result = await auth.signIn({ username, password });
-        console.log(result);
         if (result.status === 201) {
           toast.success('Đăng nhập thành công');
           dispatch({ type: TOGGLE_SIGN_IN });
