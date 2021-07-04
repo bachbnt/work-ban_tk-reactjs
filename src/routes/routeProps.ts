@@ -26,6 +26,10 @@ export const authedAdmins: RouteProps[] = [
     component: 'adminUploadProduct',
   },
   {
+    path: RouteName.ADD_CATEGORY,
+    component: 'adminAddCategory',
+  },
+  {
     path: RouteName.USER_MANAGEMENT,
     component: 'adminUserManagement',
   },

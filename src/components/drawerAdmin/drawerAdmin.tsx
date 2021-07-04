@@ -22,7 +22,6 @@ import useStyles from './styles';
 import useAuth from 'src/hooks/useAuth';
 import useSignOut from 'src/hooks/useSignOut';
 import { TOGGLE_SIGN_IN } from 'src/redux/signInDialog/signInDialogAction';
-import { TOGGLE_API } from 'src/redux/apiDialog/apiDialogAction';
 import { RouteName } from 'src/routes/routeName';
 import { useHistory, useLocation } from 'react-router-dom';
 
@@ -30,6 +29,10 @@ const routes: DrawerAdminRoute[] = [
   {
     title: 'Upload Product',
     name: RouteName.UPLOAD_PRODUCT,
+  },
+  {
+    title: 'Add Category',
+    name: RouteName.ADD_CATEGORY,
   },
   {
     title: 'User Management',

@@ -17,7 +17,7 @@ const useCategoryList = () => {
   const getData = useCallback(async () => {
     dispatch({ type: SHOW_SPINNER });
     try {
-      const result = await categoryService.getAll();
+      const result = await categoryService.getCategories();
       setData(result.data);
       dispatch({
         type: SET_CATEGORY,
