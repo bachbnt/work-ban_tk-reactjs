@@ -173,15 +173,17 @@ const Drawer = (props: Props) => {
               <ListItemText primary={startCase(t(item.name))} />
             </ListItem>
           ))}
-          <ListItem
-            key={'api'}
-            button
-            className={clsx(classes.listItem, classes.routeItem)}
-            onClick={() => {
-              dispatch({ type: TOGGLE_API });
-            }}>
-            <ListItemText primary={startCase(t('tích hợp API'))} />
-          </ListItem>
+          {auth.isSignedIn() && (
+            <ListItem
+              key={'api'}
+              button
+              className={clsx(classes.listItem, classes.routeItem)}
+              onClick={() => {
+                dispatch({ type: TOGGLE_API });
+              }}>
+              <ListItemText primary={startCase(t('tích hợp API'))} />
+            </ListItem>
+          )}
         </List>
       </Box>
       {auth.isSignedIn() && userReducer?.isVerified && (

@@ -33,8 +33,9 @@ const AdminAddCategory = (props: Props) => {
   const onSubmit = useCallback(
     async (values: AdminAddCategoryFormValue) => {
       await createCategory(values.name);
+      reset({ name: '' });
     },
-    [createCategory]
+    [createCategory, reset]
   );
 
   return (

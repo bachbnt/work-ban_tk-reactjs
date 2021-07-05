@@ -16,6 +16,7 @@ import { TOGGLE_VERIFY_EMAIL } from 'src/redux/verifyEmailDialog/verifyEmailDial
 import { TOGGLE_MONEY } from 'src/redux/moneyDialog/moneyDialogAction';
 import ApiDialog from '../apiDialog';
 import { TOGGLE_API } from 'src/redux/apiDialog/apiDialogAction';
+import BoughtDialog from '../boughtDialog';
 
 const Layout = (props: Props) => {
   const classes = useStyles();
@@ -37,6 +38,9 @@ const Layout = (props: Props) => {
     (state: RootState) => state.moneyDialogReducer
   );
   const apiReducer = useSelector((state: RootState) => state.apiDialogReducer);
+  const boughtReducer = useSelector(
+    (state: RootState) => state.boughtDialogReducer
+  );
 
   const openDrawer = drawerReducer.open;
   const openSignIn = signInReducer.open;
@@ -44,6 +48,7 @@ const Layout = (props: Props) => {
   const openVerifyEmail = verifyEmailReducer.open;
   const openMoney = moneyReducer.open;
   const openApi = apiReducer.open;
+  const openBought = boughtReducer.open;
 
   const handleCloseSignIn = () => {
     if (openSignIn) {
@@ -74,6 +79,12 @@ const Layout = (props: Props) => {
     }
   };
 
+  const handleCloseBought = () => {
+    if (openBought) {
+      dispatch({ type: TOGGLE_API, payload: [] });
+    }
+  };
+
   return (
     <Box display='flex' className={classes.root}>
       <Box display='flex' flexDirection='column' className={classes.app}>
@@ -98,6 +109,7 @@ const Layout = (props: Props) => {
       />
       <MoneyDialog open={openMoney} onClose={handleCloseMoney} />
       <ApiDialog open={openApi} onClose={handleCloseApi} />
+      <BoughtDialog open={openBought} onClose={handleCloseBought} />
     </Box>
   );
 };

@@ -7,8 +7,8 @@ class CategoryService {
     return result;
   }
   async postCategory(name: string): Promise<any> {
-    const result = await apiClient.post(Endpoint.CATEGORY);
-    return {};
+    const result = await apiClient.post(Endpoint.CATEGORY, { name });
+    return result;
   }
 }
 

@@ -10,4 +10,6 @@ export class Endpoint {
   static readonly COUNTRY = '/country';
   static readonly BANK = '/admin/bank-info';
   static readonly HISTORY = '/payment/histories';
+  static readonly BUY = '/product/buy';
+  static readonly PRODUCT = '/product';
 }

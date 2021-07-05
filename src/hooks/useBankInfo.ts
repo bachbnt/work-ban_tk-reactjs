@@ -26,7 +26,7 @@ const useBankInfo = () => {
     } finally {
       dispatch({ type: HIDE_SPINNER });
     }
-  }, [t, dispatch]);
+  }, [t, dispatch, auth]);
 
   useEffect(() => {
     getData();

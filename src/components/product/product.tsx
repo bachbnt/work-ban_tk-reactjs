@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import useAuth from 'src/hooks/useAuth';
+import useBuyProduct from 'src/hooks/useBuyProduct';
 import { TOGGLE_SIGN_IN } from 'src/redux/signInDialog/signInDialogAction';
 import Button from '../button';
 import { Props } from './props';
@@ -13,21 +14,26 @@ const Product = (props: Props) => {
   const { t } = useTranslation();
   const { data } = props;
   const [total, setTotal] = useState(0);
+  const [count, setCount] = useState(0);
   const dispatch = useDispatch();
   const auth = useAuth();
+  const { bought, buyProduct } = useBuyProduct();
 
   const openSignIn = () => {
     dispatch({ type: TOGGLE_SIGN_IN });
   };
 
-  const clickBuy = () => {
+  const clickBuy = async (country: string) => {
     if (!auth.isSignedIn()) {
       openSignIn();
+    } else {
+      await buyProduct(country, count);
     }
   };
 
   const handleChange = (event: any) => {
     setTotal(event.target.value * data.unitPrice);
+    setCount(event.target.value);
   };
 
   return (
@@ -68,7 +74,10 @@ const Product = (props: Props) => {
           <Typography>{total}</Typography>
         </Box>
         <Button
-          onClick={clickBuy}
+          disabled={data.quality === 0}
+          onClick={async () => {
+            await clickBuy(data._id);
+          }}
           classes={{
             root: classes.button,
           }}>{`Mua ${data.countryCode}`}</Button>

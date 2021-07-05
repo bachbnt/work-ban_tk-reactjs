@@ -19,7 +19,7 @@ const useAddCategory = () => {
       dispatch({ type: SHOW_SPINNER });
       try {
         const result = await categoryService.postCategory(name);
-        if (result.status === 200) {
+        if (result.status === 201) {
           toast.success('Thêm thành công');
         }
       } catch (error) {

@@ -6,5 +6,6 @@ export * from './signUpDialog/signUpDialogReducer';
 export * from './verifyEmailDialog/verifyEmailDialogReducer';
 export * from './moneyDialog/moneyDialogReducer';
 export * from './apiDialog/apiDialogReducer';
+export * from './boughtDialog/boughtDialogReducer';
 export * from './category/categoryReducer';
 export * from './countryList/countryListReducer';
