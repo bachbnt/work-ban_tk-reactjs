@@ -21,8 +21,6 @@ const useSignOut = () => {
     try {
       await auth.signOut({});
       dispatch({ type: SET_USER, payload: null });
-      dispatch({ type: SET_CATEGORY, payload: null });
-      dispatch({ type: SET_COUNTRY_LIST, payload: null });
       if (isAdmin) {
         history.replace(RouteName.ADMIN);
       } else {
