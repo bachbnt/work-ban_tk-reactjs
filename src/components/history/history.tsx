@@ -17,19 +17,19 @@ const History = (props: Props) => {
         alignItems='center'
         justifyContent='space-between'>
         <Box width={100} mx={1}>
-          <Typography>{data.time}</Typography>
+          <Typography>{new Date(data.createdAt).toLocaleString()}</Typography>
         </Box>
         <Box flex={1} mx={1} textAlign='left'>
-          <Typography>{data.description}</Typography>
+          <Typography>{data.describe}</Typography>
         </Box>
         <Box width={100} mx={1}>
-          <Typography>{data.type}</Typography>
+          <Typography>{data.categoryName}</Typography>
         </Box>
         <Box width={40} mx={1}>
           <Typography>{data.quantity}</Typography>
         </Box>
         <Box flex={1} mx={1}>
-          <Typography>{data.total}</Typography>
+          <Typography>{data.amount}</Typography>
         </Box>
         <Button classes={{ root: classes.button }}>Lấy dữ liệu</Button>
       </Box>

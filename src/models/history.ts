@@ -1,8 +1,8 @@
 export interface History {
   _id: string;
-  time: string;
-  type: string;
-  description: string;
+  createdAt: string;
+  categoryName: string;
+  describe: string;
   quantity: number;
-  total: number;
+  amount: number;
 }

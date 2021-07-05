@@ -19,7 +19,7 @@ const HistoryMobile = (props: Props) => {
           mt={2}>
           <Typography className={classes.leading}>Thời gian</Typography>
           <Box width={120}>
-            <Typography align='right'>{data.time}</Typography>
+            <Typography align='right'>{data.createdAt}</Typography>
           </Box>
         </Box>
         <Box
@@ -30,7 +30,7 @@ const HistoryMobile = (props: Props) => {
           my={1}>
           <Typography className={classes.leading}>Mô tả</Typography>
           <Box width={120}>
-            <Typography align='right'>{data.description}</Typography>
+            <Typography align='right'>{data.describe}</Typography>
           </Box>
         </Box>
         <Box
@@ -40,7 +40,7 @@ const HistoryMobile = (props: Props) => {
           alignItems='center'
           my={1}>
           <Typography className={classes.leading}>Loại</Typography>
-          <Typography>{data.type}</Typography>
+          <Typography>{data.categoryName}</Typography>
         </Box>
         <Box
           display='flex'
@@ -58,7 +58,7 @@ const HistoryMobile = (props: Props) => {
           mt={1}
           mb={2}>
           <Typography className={classes.leading}>Tổng tiền (VND)</Typography>
-          <Typography>{data.total}</Typography>
+          <Typography>{data.amount}</Typography>
         </Box>
       </Box>
       <Divider classes={{ root: classes.divider }} />

@@ -1,28 +1,28 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { HIDE_SPINNER, SHOW_SPINNER } from 'src/redux/spinner/spinnerAction';
 import { toast } from 'src/utils/toast';
-import { countryService } from 'src/services/countryService';
-import { Country } from 'src/models/country';
-import { SET_COUNTRY_LIST } from 'src/redux/countryList/countryListAction';
+import { historyService } from 'src/services/historyService';
+import { History } from 'src/models/history';
+import useAuth from './useAuth';
 
-const useCountryList = () => {
+const useHistoryList = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const [data, setData] = useState<Country[]>([]);
+  const [data, setData] = useState<History[]>([]);
   const [totalPage, setTotalPage] = useState(1);
+  const auth = useAuth();
 
   const getData = useCallback(
-    async (category?: string, page?: number) => {
+    async (page?: number) => {
       dispatch({ type: SHOW_SPINNER });
       try {
-        const result = await countryService.getAll(category, page);
+        if (!auth.isSignedIn()) {
+          return;
+        }
+        const result = await historyService.getAll(page);
         setData(result.data);
-        dispatch({
-          type: SET_COUNTRY_LIST,
-          payload: { data: result.data, total: result.totalPage },
-        });
         setTotalPage(result.totalPage);
       } catch (error) {
         toast.error(t(error.message));
@@ -36,4 +36,4 @@ const useCountryList = () => {
   return { data, totalPage, getData };
 };
 
-export default useCountryList;
+export default useHistoryList;

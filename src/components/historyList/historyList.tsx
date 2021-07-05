@@ -6,11 +6,20 @@ import HistoryMobile from '../historyMobile';
 import clsx from 'clsx';
 import { Props } from './props';
 import useStyles from './styles';
+import useHistoryList from 'src/hooks/useHistoryList';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import Pagination from 'src/components/pagination';
 
 const HistoryList = (props: Props) => {
   const classes = useStyles();
   const { t } = useTranslation();
-  const { data } = props;
+  const { data, totalPage, getData: getHistoryList } = useHistoryList();
+  const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => {
+    getHistoryList(currentPage);
+  }, [getHistoryList, currentPage]);
 
   return (
     <>
@@ -69,6 +78,18 @@ const HistoryList = (props: Props) => {
           <HistoryMobile data={item} />
         ))}
       </Hidden>
+      <Pagination
+        currentPage={currentPage}
+        totalPage={totalPage}
+        onPrevious={async () => {
+          await getHistoryList(currentPage - 1);
+          setCurrentPage(currentPage - 1);
+        }}
+        onNext={async () => {
+          await getHistoryList(currentPage + 1);
+          setCurrentPage(currentPage + 1);
+        }}
+      />
     </>
   );
 };

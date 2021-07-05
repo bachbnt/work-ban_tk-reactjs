@@ -1,15 +1,15 @@
-import { Grid, Hidden } from '@material-ui/core';
-import { Box, Typography, IconButton } from '@material-ui/core';
+import { Hidden } from '@material-ui/core';
+import { Box, Typography } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import Product from 'src/components/product';
 import ProductMobile from 'src/components/productMobile';
+import Pagination from 'src/components/pagination';
 import clsx from 'clsx';
 import { Props } from './props';
 import useStyles from './styles';
 import { useSelector } from 'react-redux';
 import { RootState } from 'src/redux/rootState';
 import { useState } from 'react';
-import { NavigateBefore, NavigateNext } from '@material-ui/icons';
 import useCountryList from 'src/hooks/useCountryList';
 
 const ProductList = (props: Props) => {
@@ -76,35 +76,18 @@ const ProductList = (props: Props) => {
           <ProductMobile data={item} />
         ))}
       </Hidden>
-      <Box display='flex' justifyContent='center'>
-        <Grid container xs={12} md={4} alignItems='center'>
-          <Grid item xs={3}>
-            {currentPage > 1 && (
-              <IconButton
-                onClick={async () => {
-                  await getCountryList(categoryReducer?.id, currentPage - 1);
-                  setCurrentPage(currentPage - 1);
-                }}>
-                <NavigateBefore color='primary' />
-              </IconButton>
-            )}
-          </Grid>
-          <Grid item xs={6}>
-            <Typography>{`${currentPage}/${countryListReducer?.total}`}</Typography>
-          </Grid>
-          <Grid item xs={3}>
-            {currentPage < countryListReducer?.total! && (
-              <IconButton
-                onClick={async () => {
-                  await getCountryList(categoryReducer?.id, currentPage + 1);
-                  setCurrentPage(currentPage + 1);
-                }}>
-                <NavigateNext color='primary' />
-              </IconButton>
-            )}
-          </Grid>
-        </Grid>
-      </Box>
+      <Pagination
+        currentPage={currentPage}
+        totalPage={countryListReducer?.total ?? 0}
+        onPrevious={async () => {
+          await getCountryList(categoryReducer?.id, currentPage - 1);
+          setCurrentPage(currentPage - 1);
+        }}
+        onNext={async () => {
+          await getCountryList(categoryReducer?.id, currentPage + 1);
+          setCurrentPage(currentPage + 1);
+        }}
+      />
     </>
   );
 };
