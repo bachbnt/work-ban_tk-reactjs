@@ -9,8 +9,8 @@ class BankService {
   }
 
   async putInfo(req: BankInfo): Promise<any> {
-    const result = await apiClient.put(Endpoint.BANK);
-    return {};
+    const result = await apiClient.put(Endpoint.BANK, req);
+    return result;
   }
 }
 

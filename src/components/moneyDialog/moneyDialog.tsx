@@ -7,9 +7,7 @@ import {
   Divider,
 } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
 import useBankInfo from 'src/hooks/useBankInfo';
-import { RootState } from 'src/redux/rootState';
 import { Props } from './props';
 import useStyles from './styles';
 

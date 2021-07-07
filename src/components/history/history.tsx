@@ -29,7 +29,7 @@ const History = (props: Props) => {
           <Typography>{data.quantity}</Typography>
         </Box>
         <Box flex={1} mx={1}>
-          <Typography>{data.amount}</Typography>
+          <Typography>{data.totalAmount}</Typography>
         </Box>
         <Button classes={{ root: classes.button }}>Lấy dữ liệu</Button>
       </Box>

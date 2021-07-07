@@ -9,8 +9,8 @@ class HtmlService {
   }
 
   async putNotification(html: string): Promise<any> {
-    const result = await apiClient.put(Endpoint.HTML);
-    return {};
+    const result = await apiClient.put(Endpoint.HTML, { file: html });
+    return result;
   }
 }
 

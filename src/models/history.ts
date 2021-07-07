@@ -4,5 +4,5 @@ export interface History {
   categoryName: string;
   describe: string;
   quantity: number;
-  amount: number;
+  totalAmount: number;
 }

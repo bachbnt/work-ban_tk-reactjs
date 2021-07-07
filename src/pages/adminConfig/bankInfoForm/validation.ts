@@ -5,12 +5,10 @@ export interface BankInfoFormValue {
   bankName: string;
   accountNumber: string;
   accountName: string;
-  transferContent: string;
 }
 
 export const bankInfoFormSchema = yup.object().shape({
   bankName: otherSchema,
   accountNumber: otherSchema,
   accountName: otherSchema,
-  transferContent: otherSchema,
 });

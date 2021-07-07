@@ -19,7 +19,9 @@ const HistoryMobile = (props: Props) => {
           mt={2}>
           <Typography className={classes.leading}>Thời gian</Typography>
           <Box width={120}>
-            <Typography align='right'>{data.createdAt}</Typography>
+            <Typography align='right'>
+              {new Date(data.createdAt).toLocaleString()}
+            </Typography>
           </Box>
         </Box>
         <Box
@@ -58,7 +60,7 @@ const HistoryMobile = (props: Props) => {
           mt={1}
           mb={2}>
           <Typography className={classes.leading}>Tổng tiền (VND)</Typography>
-          <Typography>{data.amount}</Typography>
+          <Typography>{data.totalAmount}</Typography>
         </Box>
       </Box>
       <Divider classes={{ root: classes.divider }} />

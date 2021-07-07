@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { HIDE_SPINNER, SHOW_SPINNER } from 'src/redux/spinner/spinnerAction';
 import { toast } from 'src/utils/toast';
 import { productService } from 'src/services/productService';
-import { TOGGLE_BOUGHT } from 'src/redux/boughtDialog/boughtDialogAction';
+import { TOGGLE_BOUGHT_DIALOG } from 'src/redux/boughtDialog/boughtDialogAction';
 
 const useBuyProduct = () => {
   const { t } = useTranslation();
@@ -18,7 +18,7 @@ const useBuyProduct = () => {
         const result = await productService.buyProduct(country, quantity);
         if (result.status === 200) {
           toast.success('Mua thành công');
-          dispatch({ type: TOGGLE_BOUGHT });
+          dispatch({ type: TOGGLE_BOUGHT_DIALOG });
           setBought(result.data);
         }
       } catch (error) {

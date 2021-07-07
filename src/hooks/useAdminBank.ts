@@ -12,12 +12,7 @@ const useAdminBank = () => {
   const auth = useAuth();
 
   const updateBank = useCallback(
-    async (
-      bankName: string,
-      accountNumber: string,
-      accountName: string,
-      transferContent: string
-    ) => {
+    async (bankName: string, accountNumber: string, accountName: string) => {
       if (!auth.isSignedIn()) {
         return;
       }
@@ -27,7 +22,6 @@ const useAdminBank = () => {
           bankName,
           accountNumber,
           accountName,
-          transferContent,
         });
         if (result.status === 200) {
           toast.success('Cập nhật thành công');

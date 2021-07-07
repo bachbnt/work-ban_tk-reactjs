@@ -27,7 +27,6 @@ const BankInfoForm = (props: Props) => {
       bankName: bankInfo?.bankName!,
       accountNumber: bankInfo?.accountNumber!,
       accountName: bankInfo?.accountName!,
-      transferContent: bankInfo?.transferContent!,
     };
     reset(initialValue);
   }, [reset, bankInfo]);
@@ -37,8 +36,7 @@ const BankInfoForm = (props: Props) => {
       await updateBank(
         values.bankName,
         values.accountNumber,
-        values.accountName,
-        values.transferContent
+        values.accountName
       );
     },
     [updateBank]
@@ -51,7 +49,6 @@ const BankInfoForm = (props: Props) => {
           <TextFormField name='bankName' label='bankName' />
           <TextFormField name='accountNumber' label='accountNumber' />
           <TextFormField name='accountName' label='accountName' />
-          <TextFormField name='transferContent' label='transferContent' />
           <Box my={2} />
           <Button
             onClick={handleSubmit(onSubmit)}
