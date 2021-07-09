@@ -1,8 +1,10 @@
 import { Box, Typography, Divider } from '@material-ui/core';
-import { useState } from 'react';
+import { useEffect } from 'react';
+import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import useAddMoney from 'src/hooks/useAddMoney';
 import useCutMoney from 'src/hooks/useCutMoney';
+import { User as UserModel } from 'src/models/user';
 import Button from '../button';
 import TextField from '../textField';
 import { Props } from './props';
@@ -19,17 +21,25 @@ const User = (props: Props) => {
     setCount(event.target.value);
   };
 
+  const addRef = useRef<UserModel>();
+  const cutRef = useRef<UserModel>();
+
   const { dataAdd, addMoney } = useAddMoney(data);
   const { dataCut, cutMoney } = useCutMoney(data);
 
+  useEffect(() => {
+    addRef.current = dataAdd;
+    cutRef.current = dataCut;
+  }, [dataAdd, dataCut]);
+
   const handleAdd = async () => {
     await addMoney(count * 1000, data._id);
-    setUser(dataAdd);
+    setUser(addRef.current!);
   };
 
   const handleCut = async () => {
     await cutMoney(count * 1000, data._id);
-    setUser(dataCut);
+    setUser(cutRef.current!);
   };
 
   return (

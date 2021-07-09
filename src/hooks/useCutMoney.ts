@@ -31,7 +31,7 @@ const useCutMoney = (user: User) => {
         dispatch({ type: HIDE_SPINNER });
       }
     },
-    [t, dispatch]
+    [t, dispatch, auth]
   );
 
   return { dataCut, cutMoney };

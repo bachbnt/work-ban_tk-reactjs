@@ -17,7 +17,6 @@ const useAddMoney = (user: User) => {
     async (money: number, id: string) => {
       dispatch({ type: SHOW_SPINNER });
       try {
-        debugger;
         if (!auth.isSignedIn()) {
           return;
         }
@@ -25,7 +24,6 @@ const useAddMoney = (user: User) => {
         if (result.status === 201) {
           toast.success('Đã cộng');
           setData(result.data);
-          debugger;
         }
       } catch (error) {
         toast.error(t(error.message));
@@ -33,7 +31,7 @@ const useAddMoney = (user: User) => {
         dispatch({ type: HIDE_SPINNER });
       }
     },
-    [t, dispatch]
+    [t, dispatch, auth]
   );
 
   return { dataAdd, addMoney };
