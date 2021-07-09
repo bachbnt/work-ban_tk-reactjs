@@ -17,6 +17,13 @@ class UserService {
 
     return result;
   }
+
+  async getAll(page?: number): Promise<any> {
+    const result = await apiClient.get(Endpoint.USERS, {
+      params: { page: page, page_size: 10 },
+    });
+    return result.data;
+  }
 }
 
 export const userService = new UserService();

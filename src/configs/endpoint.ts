@@ -12,4 +12,5 @@ export class Endpoint {
   static readonly HISTORY = '/payment/histories';
   static readonly BUY = '/product/buy';
   static readonly PRODUCT = '/product';
+  static readonly USERS = '/users';
 }

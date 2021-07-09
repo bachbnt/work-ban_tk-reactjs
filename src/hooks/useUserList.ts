@@ -3,14 +3,14 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { HIDE_SPINNER, SHOW_SPINNER } from 'src/redux/spinner/spinnerAction';
 import { toast } from 'src/utils/toast';
-import { historyService } from 'src/services/historyService';
-import { History } from 'src/models/history';
 import useAuth from './useAuth';
+import { userService } from 'src/services/userService';
+import { User } from 'src/models/user';
 
-const useHistoryList = () => {
+const useUserList = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const [data, setData] = useState<History[]>([]);
+  const [data, setData] = useState<User[]>([]);
   const [totalPage, setTotalPage] = useState(1);
   const auth = useAuth();
 
@@ -21,7 +21,7 @@ const useHistoryList = () => {
         if (!auth.isSignedIn()) {
           return;
         }
-        const result = await historyService.getAll(page);
+        const result = await userService.getAll(page);
         setData(result.data);
         setTotalPage(result.totalPage);
       } catch (error) {
@@ -36,4 +36,4 @@ const useHistoryList = () => {
   return { data, totalPage, getData };
 };
 
-export default useHistoryList;
+export default useUserList;

@@ -3,7 +3,9 @@ import { apiClient } from './apiClient';
 
 class ProductService {
   async getProducts(page?: number): Promise<any> {
-    const result = await apiClient.get(Endpoint.PRODUCT, { params: { page } });
+    const result = await apiClient.get(Endpoint.PRODUCT, {
+      params: { page: page, page_size: 10 },
+    });
     return result;
   }
   async buyProduct(country: string, quantity: number): Promise<any> {
