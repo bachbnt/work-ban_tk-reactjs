@@ -19,7 +19,7 @@ export default makeStyles((theme: AppTheme) =>
       marginTop: theme.spacing(1),
     },
     textField: {
-      width: 60,
+      width: 80,
       '& .MuiInputBase-root': {
         color: theme.colors.drawerBackground,
       },
