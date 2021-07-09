@@ -1,6 +1,7 @@
 import { Endpoint } from 'src/configs/endpoint';
 import { ResendEmailRequest } from 'src/models/reqres/resendEmail';
 import { VerifyEmailRequest } from 'src/models/reqres/verifyEmail';
+import { util } from 'src/utils/util';
 import { apiClient } from './apiClient';
 
 class UserService {
@@ -23,6 +24,26 @@ class UserService {
       params: { page: page, page_size: 10 },
     });
     return result.data;
+  }
+
+  async addMoney(money: number, id: string): Promise<any> {
+    const endpoint = util.formatString(Endpoint.ADD_MONEY, {
+      id,
+    });
+    const result = await apiClient.post(endpoint, {
+      addMoney: money,
+    });
+    return result;
+  }
+
+  async cutMoney(money: number, id: string): Promise<any> {
+    const endpoint = util.formatString(Endpoint.CUT_MONEY, {
+      id,
+    });
+    const result = await apiClient.post(endpoint, {
+      cutMoney: money,
+    });
+    return result;
   }
 }
 

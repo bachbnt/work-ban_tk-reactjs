@@ -1,5 +1,6 @@
 import { Box, Typography, Divider } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
+import Button from '../button';
 import { Props } from './props';
 import useStyles from './styles';
 
@@ -61,6 +62,9 @@ const HistoryMobile = (props: Props) => {
           mb={2}>
           <Typography className={classes.leading}>Tổng tiền (VND)</Typography>
           <Typography>{data.totalAmount}</Typography>
+        </Box>
+        <Box textAlign='right'>
+          <Button classes={{ root: classes.button }}>Lấy dữ liệu</Button>
         </Box>
       </Box>
       <Divider classes={{ root: classes.divider }} />

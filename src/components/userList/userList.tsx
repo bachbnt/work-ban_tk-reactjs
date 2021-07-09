@@ -65,6 +65,7 @@ const UserList = (props: Props) => {
               Cộng trừ (k VNĐ)
             </Typography>
           </Box>
+          <Box width={100} />
         </Box>
 
         {data.map((item) => (

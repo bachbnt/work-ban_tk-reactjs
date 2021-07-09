@@ -13,4 +13,6 @@ export class Endpoint {
   static readonly BUY = '/product/buy';
   static readonly PRODUCT = '/product';
   static readonly USERS = '/users';
+  static readonly ADD_MONEY = '/users/{id}/add-money';
+  static readonly CUT_MONEY = '/users/{id}/cut-money';
 }

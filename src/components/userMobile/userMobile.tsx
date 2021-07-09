@@ -1,5 +1,10 @@
 import { Box, Typography, Divider } from '@material-ui/core';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import useAddMoney from 'src/hooks/useAddMoney';
+import useCutMoney from 'src/hooks/useCutMoney';
+import Button from '../button';
+import TextField from '../textField';
 import { Props } from './props';
 import useStyles from './styles';
 
@@ -7,6 +12,25 @@ const UserMobile = (props: Props) => {
   const classes = useStyles();
   const { t } = useTranslation();
   const { data } = props;
+  const [count, setCount] = useState(0);
+  const [user, setUser] = useState(data);
+
+  const handleChange = (event: any) => {
+    setCount(event.target.value);
+  };
+
+  const { dataAdd, addMoney } = useAddMoney(data);
+  const { dataCut, cutMoney } = useCutMoney(data);
+
+  const handleAdd = async () => {
+    await addMoney(count * 1000, data._id);
+    setUser(dataAdd);
+  };
+
+  const handleCut = async () => {
+    await cutMoney(count * 1000, data._id);
+    setUser(dataCut);
+  };
 
   return (
     <Box display='flex' flexDirection='column' my={1}>
@@ -19,7 +43,7 @@ const UserMobile = (props: Props) => {
           mt={2}>
           <Typography className={classes.leading}>Tài khoản</Typography>
           <Box width={120}>
-            <Typography align='right'>{data.username}</Typography>
+            <Typography align='right'>{user.username}</Typography>
           </Box>
         </Box>
         <Box
@@ -30,7 +54,7 @@ const UserMobile = (props: Props) => {
           my={1}>
           <Typography className={classes.leading}>Email</Typography>
           <Box width={120}>
-            <Typography align='right'>{data.email}</Typography>
+            <Typography align='right'>{user.email}</Typography>
           </Box>
         </Box>
         <Box
@@ -40,7 +64,7 @@ const UserMobile = (props: Props) => {
           alignItems='center'
           my={1}>
           <Typography className={classes.leading}>SĐT</Typography>
-          <Typography>{data.phone}</Typography>
+          <Typography>{user.phone}</Typography>
         </Box>
         <Box
           display='flex'
@@ -48,7 +72,7 @@ const UserMobile = (props: Props) => {
           justifyContent='space-between'
           alignItems='center'>
           <Typography className={classes.leading}>Xác thực</Typography>
-          <Typography>{`${data.isVerified}`}</Typography>
+          <Typography>{`${user.isVerified}`}</Typography>
         </Box>
         <Box
           display='flex'
@@ -58,7 +82,45 @@ const UserMobile = (props: Props) => {
           mt={1}
           mb={2}>
           <Typography className={classes.leading}>Tiền (VNĐ)</Typography>
-          <Typography>{data.balance}</Typography>
+          <Typography>{user.balance}</Typography>
+        </Box>
+        <Box
+          width={150}
+          display='flex'
+          flexDirection='row'
+          alignItems='center'
+          justifyContent='center'
+          mb={2}>
+          <TextField
+            classes={{ root: classes.textField }}
+            margin='none'
+            inputMode='decimal'
+            variant='outlined'
+            type='number'
+            defaultValue={0}
+            InputProps={{ inputProps: { min: 0 } }}
+            onChange={(event) => {
+              handleChange(event);
+            }}
+          />
+          <Box display='flex' flexDirection='column' ml={1}>
+            <Button
+              disabled={count === 0}
+              classes={{ root: classes.button }}
+              onClick={handleAdd}>
+              +
+            </Button>
+            <Box my={0.5} />
+            <Button
+              disabled={count === 0}
+              classes={{ root: classes.button }}
+              onClick={handleCut}>
+              -
+            </Button>
+          </Box>
+        </Box>
+        <Box textAlign='right'>
+          <Button classes={{ root: classes.resetButton }}>Reset MK</Button>
         </Box>
       </Box>
       <Divider classes={{ root: classes.divider }} />

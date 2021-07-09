@@ -21,6 +21,14 @@ const HistoryList = (props: Props) => {
     getHistoryList(currentPage);
   }, [getHistoryList, currentPage]);
 
+  useEffect(() => {
+    let timer = setInterval(() => {
+      getHistoryList(currentPage);
+    }, 60000);
+
+    return () => clearInterval(timer);
+  }, [getHistoryList, currentPage]);
+
   return (
     <>
       <Hidden xsDown>

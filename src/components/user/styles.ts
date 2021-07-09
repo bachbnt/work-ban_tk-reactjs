@@ -13,13 +13,23 @@ export default makeStyles((theme: AppTheme) =>
         backgroundColor: theme.colors.greenDark,
       },
     },
+    resetButton: {
+      backgroundColor: theme.colors.green,
+      width: 100,
+      minWidth: 80,
+      height: 40,
+      color: theme.palette.common.white,
+      '&:hover': {
+        backgroundColor: theme.colors.greenDark,
+      },
+    },
     divider: {
       backgroundColor: theme.colors.grey500,
       width: '100%',
       marginTop: theme.spacing(1),
     },
     textField: {
-      width: 60,
+      width: 80,
       '& .MuiInputBase-root': {
         color: theme.colors.drawerBackground,
       },

@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from 'src/redux/rootState';
 import { useState } from 'react';
 import useCountryList from 'src/hooks/useCountryList';
+import { useEffect } from 'react';
 
 const ProductList = (props: Props) => {
   const classes = useStyles();
@@ -23,6 +24,14 @@ const ProductList = (props: Props) => {
     (state: RootState) => state.categoryReducer
   );
   const { getData: getCountryList } = useCountryList();
+
+  useEffect(() => {
+    let timer = setInterval(() => {
+      getCountryList(categoryReducer?.id, currentPage);
+    }, 60000);
+
+    return () => clearInterval(timer);
+  }, [getCountryList, currentPage, categoryReducer]);
 
   return (
     <>
