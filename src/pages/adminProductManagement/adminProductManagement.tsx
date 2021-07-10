@@ -1,5 +1,6 @@
-import { Typography } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
+import CategoryList from 'src/components/categoryList';
+import FormCard from 'src/components/formCard';
 import LayoutAdmin from 'src/components/layoutAdmin';
 import { Props } from './props';
 import useStyles from './styles';
@@ -10,7 +11,9 @@ const AdminProductManagement = (props: Props) => {
 
   return (
     <LayoutAdmin main>
-      <Typography>AdminProductManagement</Typography>
+      <FormCard>
+        <CategoryList />
+      </FormCard>
     </LayoutAdmin>
   );
 };

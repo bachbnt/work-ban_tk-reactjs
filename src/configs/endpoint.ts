@@ -7,6 +7,7 @@ export class Endpoint {
   static readonly VERIFY_EMAIL = '/users/verify';
   static readonly HTML = '/html';
   static readonly CATEGORY = '/category';
+  static readonly DELETE_CATEGORY = '/category/{id}';
   static readonly COUNTRY = '/country';
   static readonly BANK = '/admin/bank-info';
   static readonly HISTORY = '/payment/histories';
@@ -15,4 +16,5 @@ export class Endpoint {
   static readonly USERS = '/users';
   static readonly ADD_MONEY = '/users/{id}/add-money';
   static readonly CUT_MONEY = '/users/{id}/cut-money';
+  static readonly RESET_PASSWORD = '/users/{id}/reset-password';
 }

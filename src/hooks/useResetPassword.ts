@@ -1,31 +1,27 @@
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { HIDE_SPINNER, SHOW_SPINNER } from 'src/redux/spinner/spinnerAction';
 import { toast } from 'src/utils/toast';
-import useAuth from './useAuth';
 import { userService } from 'src/services/userService';
-import { User } from 'src/models/user';
+import useAuth from './useAuth';
 
-const useUserList = () => {
+const useResetPassword = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const [data, setData] = useState<User[]>([]);
-  const [totalPage, setTotalPage] = useState(1);
-  const [currentPage, setCurrentPage] = useState(1);
   const auth = useAuth();
 
-  const getData = useCallback(
-    async (page?: number) => {
+  const resetPassword = useCallback(
+    async (id: string) => {
       dispatch({ type: SHOW_SPINNER });
       try {
         if (!auth.isSignedIn()) {
           return;
         }
-        const result = await userService.getAll(page);
-        setData(result.data);
-        setTotalPage(result.totalPage);
-        setCurrentPage(result.page);
+        const result = await userService.resetPassword(id);
+        if (result.status === 200) {
+          toast.success('Đã gửi');
+        }
       } catch (error) {
         toast.error(t(error.message));
       } finally {
@@ -35,7 +31,7 @@ const useUserList = () => {
     [t, dispatch, auth]
   );
 
-  return { data, totalPage, currentPage, getData };
+  return { resetPassword };
 };
 
-export default useUserList;
+export default useResetPassword;

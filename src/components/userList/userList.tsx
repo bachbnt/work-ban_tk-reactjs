@@ -8,18 +8,16 @@ import { Props } from './props';
 import useStyles from './styles';
 import useUserList from 'src/hooks/useUserList';
 import { useEffect } from 'react';
-import { useState } from 'react';
 import Pagination from 'src/components/pagination';
 
 const UserList = (props: Props) => {
   const classes = useStyles();
   const { t } = useTranslation();
-  const { data, totalPage, getData: getUserList } = useUserList();
-  const [currentPage, setCurrentPage] = useState(1);
+  const { data, totalPage, currentPage, getData: getUserList } = useUserList();
 
   useEffect(() => {
-    getUserList(currentPage);
-  }, [getUserList, currentPage]);
+    getUserList(1);
+  }, [getUserList]);
 
   return (
     <>
@@ -69,7 +67,7 @@ const UserList = (props: Props) => {
         </Box>
 
         {data.map((item) => (
-          <User data={item} />
+          <User key={item._id} data={item} />
         ))}
       </Hidden>
 
@@ -80,7 +78,7 @@ const UserList = (props: Props) => {
           </Typography>
         </Box>
         {data.map((item) => (
-          <UserMobile data={item} />
+          <UserMobile key={item._id} data={item} />
         ))}
       </Hidden>
       <Pagination
@@ -88,11 +86,9 @@ const UserList = (props: Props) => {
         totalPage={totalPage}
         onPrevious={async () => {
           await getUserList(currentPage - 1);
-          setCurrentPage(currentPage - 1);
         }}
         onNext={async () => {
           await getUserList(currentPage + 1);
-          setCurrentPage(currentPage + 1);
         }}
       />
     </>

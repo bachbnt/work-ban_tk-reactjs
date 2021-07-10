@@ -12,6 +12,7 @@ const useHistoryList = () => {
   const dispatch = useDispatch();
   const [data, setData] = useState<History[]>([]);
   const [totalPage, setTotalPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
   const auth = useAuth();
 
   const getData = useCallback(
@@ -24,6 +25,7 @@ const useHistoryList = () => {
         const result = await historyService.getAll(page);
         setData(result.data);
         setTotalPage(result.totalPage);
+        setCurrentPage(result.page);
       } catch (error) {
         toast.error(t(error.message));
       } finally {
@@ -33,7 +35,7 @@ const useHistoryList = () => {
     [t, dispatch, auth]
   );
 
-  return { data, totalPage, getData };
+  return { data, totalPage, currentPage, getData };
 };
 
 export default useHistoryList;

@@ -1,12 +1,16 @@
 import { Box, Typography, Divider } from '@material-ui/core';
+import { useRef } from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import useAddMoney from 'src/hooks/useAddMoney';
 import useCutMoney from 'src/hooks/useCutMoney';
+import useResetPassword from 'src/hooks/useResetPassword';
 import Button from '../button';
 import TextField from '../textField';
+import { User as UserModel } from 'src/models/user';
 import { Props } from './props';
 import useStyles from './styles';
+import { useEffect } from 'react';
 
 const UserMobile = (props: Props) => {
   const classes = useStyles();
@@ -14,22 +18,35 @@ const UserMobile = (props: Props) => {
   const { data } = props;
   const [count, setCount] = useState(0);
   const [user, setUser] = useState(data);
+  const { resetPassword } = useResetPassword();
 
   const handleChange = (event: any) => {
     setCount(event.target.value);
   };
 
+  const addRef = useRef<UserModel>();
+  const cutRef = useRef<UserModel>();
+
   const { dataAdd, addMoney } = useAddMoney(data);
   const { dataCut, cutMoney } = useCutMoney(data);
 
+  useEffect(() => {
+    addRef.current = dataAdd;
+    cutRef.current = dataCut;
+  }, [dataAdd, dataCut]);
+
   const handleAdd = async () => {
     await addMoney(count * 1000, data._id);
-    setUser(dataAdd);
+    setUser(addRef.current!);
   };
 
   const handleCut = async () => {
     await cutMoney(count * 1000, data._id);
-    setUser(dataCut);
+    setUser(cutRef.current!);
+  };
+
+  const handleReset = async (id: string) => {
+    await resetPassword(id);
   };
 
   return (
@@ -120,7 +137,13 @@ const UserMobile = (props: Props) => {
           </Box>
         </Box>
         <Box textAlign='right'>
-          <Button classes={{ root: classes.resetButton }}>Reset MK</Button>
+          <Button
+            classes={{ root: classes.resetButton }}
+            onClick={() => {
+              handleReset(user._id);
+            }}>
+            Reset MK
+          </Button>
         </Box>
       </Box>
       <Divider classes={{ root: classes.divider }} />

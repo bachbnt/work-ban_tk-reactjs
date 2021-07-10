@@ -45,6 +45,14 @@ class UserService {
     });
     return result;
   }
+
+  async resetPassword(id: string): Promise<any> {
+    const endpoint = util.formatString(Endpoint.RESET_PASSWORD, {
+      id,
+    });
+    const result = await apiClient.patch(endpoint);
+    return result;
+  }
 }
 
 export const userService = new UserService();

@@ -4,6 +4,7 @@ import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import useAddMoney from 'src/hooks/useAddMoney';
 import useCutMoney from 'src/hooks/useCutMoney';
+import useResetPassword from 'src/hooks/useResetPassword';
 import { User as UserModel } from 'src/models/user';
 import Button from '../button';
 import TextField from '../textField';
@@ -16,6 +17,7 @@ const User = (props: Props) => {
   const { data } = props;
   const [count, setCount] = useState(0);
   const [user, setUser] = useState(data);
+  const { resetPassword } = useResetPassword();
 
   const handleChange = (event: any) => {
     setCount(event.target.value);
@@ -40,6 +42,10 @@ const User = (props: Props) => {
   const handleCut = async () => {
     await cutMoney(count * 1000, data._id);
     setUser(cutRef.current!);
+  };
+
+  const handleReset = async (id: string) => {
+    await resetPassword(id);
   };
 
   return (
@@ -99,7 +105,13 @@ const User = (props: Props) => {
           </Box>
         </Box>
         <Box width={100}>
-          <Button classes={{ root: classes.resetButton }}>Reset MK</Button>
+          <Button
+            classes={{ root: classes.resetButton }}
+            onClick={() => {
+              handleReset(user._id);
+            }}>
+            Reset MK
+          </Button>
         </Box>
       </Box>
       <Divider classes={{ root: classes.divider }} />

@@ -8,18 +8,21 @@ import { Props } from './props';
 import useStyles from './styles';
 import useHistoryList from 'src/hooks/useHistoryList';
 import { useEffect } from 'react';
-import { useState } from 'react';
 import Pagination from 'src/components/pagination';
 
 const HistoryList = (props: Props) => {
   const classes = useStyles();
   const { t } = useTranslation();
-  const { data, totalPage, getData: getHistoryList } = useHistoryList();
-  const [currentPage, setCurrentPage] = useState(1);
+  const {
+    data,
+    totalPage,
+    currentPage,
+    getData: getHistoryList,
+  } = useHistoryList();
 
   useEffect(() => {
-    getHistoryList(currentPage);
-  }, [getHistoryList, currentPage]);
+    getHistoryList(1);
+  }, [getHistoryList]);
 
   useEffect(() => {
     let timer = setInterval(() => {
@@ -72,7 +75,7 @@ const HistoryList = (props: Props) => {
         </Box>
 
         {data.map((item) => (
-          <History data={item} />
+          <History key={item._id} data={item} />
         ))}
       </Hidden>
 
@@ -83,7 +86,7 @@ const HistoryList = (props: Props) => {
           </Typography>
         </Box>
         {data.map((item) => (
-          <HistoryMobile data={item} />
+          <HistoryMobile key={item._id} data={item} />
         ))}
       </Hidden>
       <Pagination
@@ -91,11 +94,9 @@ const HistoryList = (props: Props) => {
         totalPage={totalPage}
         onPrevious={async () => {
           await getHistoryList(currentPage - 1);
-          setCurrentPage(currentPage - 1);
         }}
         onNext={async () => {
           await getHistoryList(currentPage + 1);
-          setCurrentPage(currentPage + 1);
         }}
       />
     </>

@@ -27,20 +27,20 @@ import { useHistory, useLocation } from 'react-router-dom';
 
 const routes: DrawerAdminRoute[] = [
   {
-    title: 'Upload Product',
-    name: RouteName.UPLOAD_PRODUCT,
-  },
-  {
     title: 'Add Category',
     name: RouteName.ADD_CATEGORY,
   },
   {
-    title: 'User Management',
-    name: RouteName.USER_MANAGEMENT,
+    title: 'Upload Product',
+    name: RouteName.UPLOAD_PRODUCT,
   },
   {
     title: 'Product Management',
     name: RouteName.PRODUCT_MANAGEMENT,
+  },
+  {
+    title: 'User Management',
+    name: RouteName.USER_MANAGEMENT,
   },
   {
     title: 'Web Config',
