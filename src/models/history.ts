@@ -5,4 +5,5 @@ export interface History {
   describe: string;
   quantity: number;
   totalAmount: number;
+  products: any[];
 }

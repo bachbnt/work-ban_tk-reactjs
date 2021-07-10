@@ -19,6 +19,7 @@ const LayoutAdmin = (props: Props) => {
   const signInReducer = useSelector(
     (state: RootState) => state.signInDialogReducer
   );
+
   const openDrawer = drawerReducer.open;
   const openSignIn = signInReducer.open;
 

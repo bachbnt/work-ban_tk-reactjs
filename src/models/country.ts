@@ -6,4 +6,5 @@ export interface Country {
   image: string;
   describe: string;
   quality: number;
+  isPublished: boolean;
 }

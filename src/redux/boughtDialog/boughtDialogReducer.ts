@@ -1,4 +1,8 @@
-import { TOGGLE_BOUGHT_DIALOG, BoughtDialogAction } from './boughtDialogAction';
+import {
+  TOGGLE_BOUGHT_DIALOG,
+  BoughtDialogAction,
+  SET_DATA_BOUGHT,
+} from './boughtDialogAction';
 import { BoughtDialogState, initialState } from './boughtDialogState';
 
 export const boughtDialogReducer = (
@@ -10,6 +14,10 @@ export const boughtDialogReducer = (
       return {
         ...state,
         open: !state.open,
+      };
+    case SET_DATA_BOUGHT:
+      return {
+        ...state,
         data: action.payload,
       };
     default:

@@ -1,5 +1,10 @@
 import { Box, Typography, Divider } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import {
+  SET_DATA_HISTORY,
+  TOGGLE_HISTORY_DIALOG,
+} from 'src/redux/historyDialog/historyDialogAction';
 import Button from '../button';
 import { Props } from './props';
 import useStyles from './styles';
@@ -8,6 +13,12 @@ const HistoryMobile = (props: Props) => {
   const classes = useStyles();
   const { t } = useTranslation();
   const { data } = props;
+  const dispatch = useDispatch();
+
+  const handleGet = () => {
+    dispatch({ type: SET_DATA_HISTORY, payload: data.products });
+    dispatch({ type: TOGGLE_HISTORY_DIALOG });
+  };
 
   return (
     <Box display='flex' flexDirection='column' my={1}>
@@ -64,7 +75,9 @@ const HistoryMobile = (props: Props) => {
           <Typography>{data.totalAmount}</Typography>
         </Box>
         <Box textAlign='right'>
-          <Button classes={{ root: classes.button }}>Lấy dữ liệu</Button>
+          <Button classes={{ root: classes.button }} onClick={handleGet}>
+            Lấy dữ liệu
+          </Button>
         </Box>
       </Box>
       <Divider classes={{ root: classes.divider }} />

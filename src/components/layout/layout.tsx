@@ -17,6 +17,11 @@ import { TOGGLE_MONEY } from 'src/redux/moneyDialog/moneyDialogAction';
 import ApiDialog from '../apiDialog';
 import { TOGGLE_API } from 'src/redux/apiDialog/apiDialogAction';
 import BoughtDialog from '../boughtDialog';
+import {
+  SET_DATA_HISTORY,
+  TOGGLE_HISTORY_DIALOG,
+} from 'src/redux/historyDialog/historyDialogAction';
+import HistoryDialog from '../historyDialog';
 
 const Layout = (props: Props) => {
   const classes = useStyles();
@@ -41,6 +46,9 @@ const Layout = (props: Props) => {
   const boughtReducer = useSelector(
     (state: RootState) => state.boughtDialogReducer
   );
+  const historyReducer = useSelector(
+    (state: RootState) => state.historyDialogReducer
+  );
 
   const openDrawer = drawerReducer.open;
   const openSignIn = signInReducer.open;
@@ -49,6 +57,7 @@ const Layout = (props: Props) => {
   const openMoney = moneyReducer.open;
   const openApi = apiReducer.open;
   const openBought = boughtReducer.open;
+  const openHistory = historyReducer.open;
 
   const handleCloseSignIn = () => {
     if (openSignIn) {
@@ -85,6 +94,13 @@ const Layout = (props: Props) => {
     }
   };
 
+  const handleCloseHistory = () => {
+    if (openHistory) {
+      dispatch({ type: TOGGLE_HISTORY_DIALOG });
+      dispatch({ type: SET_DATA_HISTORY, payload: [] });
+    }
+  };
+
   return (
     <Box display='flex' className={classes.root}>
       <Box display='flex' flexDirection='column' className={classes.app}>
@@ -110,6 +126,7 @@ const Layout = (props: Props) => {
       <MoneyDialog open={openMoney} onClose={handleCloseMoney} />
       <ApiDialog open={openApi} onClose={handleCloseApi} />
       <BoughtDialog open={openBought} onClose={handleCloseBought} />
+      <HistoryDialog open={openHistory} onClose={handleCloseHistory} />
     </Box>
   );
 };

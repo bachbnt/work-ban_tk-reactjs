@@ -9,3 +9,4 @@ export * from './apiDialog/apiDialogReducer';
 export * from './boughtDialog/boughtDialogReducer';
 export * from './category/categoryReducer';
 export * from './countryList/countryListReducer';
+export * from './historyDialog/historyDialogReducer';

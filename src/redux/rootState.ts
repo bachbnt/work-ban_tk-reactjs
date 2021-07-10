@@ -3,6 +3,7 @@ import { BoughtDialogState } from './boughtDialog/boughtDialogState';
 import { CategoryState } from './category/categoryState';
 import { CountryListState } from './countryList/countryListState';
 import { DrawerState } from './drawer/drawerState';
+import { HistoryDialogState } from './historyDialog/historyDialogState';
 import { MoneyDialogState } from './moneyDialog/moneyDialogState';
 import { SignInDialogState } from './signInDialog/signInDialogState';
 import { SignUpDialogState } from './signUpDialog/signUpDialogState';
@@ -22,4 +23,5 @@ export interface RootState {
   boughtDialogReducer: BoughtDialogState;
   categoryReducer: CategoryState;
   countryListReducer: CountryListState;
+  historyDialogReducer: HistoryDialogState;
 }

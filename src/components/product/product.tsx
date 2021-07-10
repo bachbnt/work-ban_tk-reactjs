@@ -36,6 +36,10 @@ const Product = (props: Props) => {
     setCount(event.target.value);
   };
 
+  if (!data.isPublished) {
+    return <div />;
+  }
+
   return (
     <Box display='flex' flexDirection='column' my={1}>
       <Box

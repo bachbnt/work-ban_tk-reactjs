@@ -30,6 +30,10 @@ const ProductMobile = (props: Props) => {
     setTotal(event.target.value * data.unitPrice);
   };
 
+  if (!data.isPublished) {
+    return <div />;
+  }
+
   return (
     <Box display='flex' flexDirection='column' my={1}>
       <Box display='flex' flexDirection='column' my={2}>
