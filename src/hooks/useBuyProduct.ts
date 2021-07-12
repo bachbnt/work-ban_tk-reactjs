@@ -1,15 +1,15 @@
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { HIDE_SPINNER, SHOW_SPINNER } from 'src/redux/spinner/spinnerAction';
 import { toast } from 'src/utils/toast';
 import { productService } from 'src/services/productService';
 import { TOGGLE_BOUGHT_DIALOG } from 'src/redux/boughtDialog/boughtDialogAction';
+import { SET_DATA_HISTORY } from 'src/redux/historyDialog/historyDialogAction';
 
 const useBuyProduct = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const [bought, setBought] = useState();
 
   const buyProduct = useCallback(
     async (country: string, quantity: number) => {
@@ -18,8 +18,8 @@ const useBuyProduct = () => {
         const result = await productService.buyProduct(country, quantity);
         if (result.status === 200) {
           toast.success('Mua thành công');
+          dispatch({ type: SET_DATA_HISTORY, payload: result.data });
           dispatch({ type: TOGGLE_BOUGHT_DIALOG });
-          setBought(result.data);
         }
       } catch (error) {
         toast.error(t(error.message));
@@ -30,7 +30,7 @@ const useBuyProduct = () => {
     [t, dispatch]
   );
 
-  return { bought, buyProduct };
+  return { buyProduct };
 };
 
 export default useBuyProduct;

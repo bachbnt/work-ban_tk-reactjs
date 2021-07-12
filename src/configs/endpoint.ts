@@ -9,6 +9,7 @@ export class Endpoint {
   static readonly CATEGORY = '/category';
   static readonly DELETE_CATEGORY = '/category/{id}';
   static readonly COUNTRY = '/country';
+  static readonly DELETE_COUNTRY = '/country/{id}';
   static readonly BANK = '/admin/bank-info';
   static readonly HISTORY = '/payment/histories';
   static readonly BUY = '/product/buy';

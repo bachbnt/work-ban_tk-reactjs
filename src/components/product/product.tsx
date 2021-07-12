@@ -17,7 +17,7 @@ const Product = (props: Props) => {
   const [count, setCount] = useState(0);
   const dispatch = useDispatch();
   const auth = useAuth();
-  const { bought, buyProduct } = useBuyProduct();
+  const { buyProduct } = useBuyProduct();
 
   const openSignIn = () => {
     dispatch({ type: TOGGLE_SIGN_IN });

@@ -17,5 +17,8 @@ export default makeStyles((theme: AppTheme) =>
         width: '100%',
       },
     },
+    button: {
+      color: theme.colors.black,
+    },
   })
 );

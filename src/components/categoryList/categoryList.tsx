@@ -54,7 +54,7 @@ const CategoryList = (props: Props) => {
       <Hidden smUp>
         <Box mt={4} mb={2} className={clsx(classes.historyContainer)}>
           <Typography className={classes.title} variant='h5'>
-            Lịch sử giao dịch
+            Danh sách danh mục
           </Typography>
         </Box>
         {data.map((item) => (

@@ -19,7 +19,6 @@ const useCountryList = () => {
       try {
         const result = await countryService.getAll(category, page);
         setData(result.data);
-        console.log(category);
         dispatch({
           type: SET_COUNTRY_LIST,
           payload: { data: result.data, total: result.totalPage },
