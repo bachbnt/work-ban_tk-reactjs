@@ -30,6 +30,10 @@ export const authedAdmins: RouteProps[] = [
     component: 'adminAddCategory',
   },
   {
+    path: RouteName.ADD_COUNTRY,
+    component: 'adminAddCountry',
+  },
+  {
     path: RouteName.USER_MANAGEMENT,
     component: 'adminUserManagement',
   },

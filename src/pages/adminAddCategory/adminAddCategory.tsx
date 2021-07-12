@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from 'react';
-import { Box } from '@material-ui/core';
+import { Box, Grid, Typography } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import { FormProvider, useForm } from 'react-hook-form';
 import useAddCategory from 'src/hooks/useAddCategory';
@@ -41,10 +41,33 @@ const AdminAddCategory = (props: Props) => {
   return (
     <LayoutAdmin main>
       <FormCard>
-        <Box>
-          <FormProvider {...methods}>
-            <TextFormField name='name' label='category' />
-            <Box my={2} />
+        <FormProvider {...methods}>
+          <Grid xs={12} container>
+            <Grid md={1} />
+            <Grid
+              xs={12}
+              md={4}
+              item
+              container
+              direction='column'
+              alignItems='flex-start'
+              justify='center'>
+              <Typography>Tên</Typography>
+            </Grid>
+            <Grid
+              xs={12}
+              md={6}
+              item
+              container
+              direction='column'
+              alignItems='flex-start'
+              justify='center'>
+              <TextFormField name='name' label='category' />
+            </Grid>
+            <Grid md={1} />
+          </Grid>
+
+          <Box my={4} textAlign='center'>
             <Button
               onClick={handleSubmit(onSubmit)}
               variant='contained'
@@ -52,8 +75,8 @@ const AdminAddCategory = (props: Props) => {
               className={classes.button}>
               OK
             </Button>
-          </FormProvider>
-        </Box>
+          </Box>
+        </FormProvider>
       </FormCard>
     </LayoutAdmin>
   );

@@ -8,6 +8,11 @@ class CountryService {
     });
     return result.data;
   }
+
+  async postCountry(request: any): Promise<any> {
+    const result = await apiClient.post(Endpoint.COUNTRY, request);
+    return result;
+  }
 }
 
 export const countryService = new CountryService();

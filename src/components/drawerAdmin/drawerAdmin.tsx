@@ -31,6 +31,10 @@ const routes: DrawerAdminRoute[] = [
     name: RouteName.ADD_CATEGORY,
   },
   {
+    title: 'Add Product Type',
+    name: RouteName.ADD_COUNTRY,
+  },
+  {
     title: 'Upload Product',
     name: RouteName.UPLOAD_PRODUCT,
   },
