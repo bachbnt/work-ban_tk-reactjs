@@ -22,6 +22,10 @@ import {
   TOGGLE_HISTORY_DIALOG,
 } from 'src/redux/historyDialog/historyDialogAction';
 import HistoryDialog from '../historyDialog';
+import {
+  SET_DATA_BOUGHT,
+  TOGGLE_BOUGHT_DIALOG,
+} from 'src/redux/boughtDialog/boughtDialogAction';
 
 const Layout = (props: Props) => {
   const classes = useStyles();
@@ -90,7 +94,8 @@ const Layout = (props: Props) => {
 
   const handleCloseBought = () => {
     if (openBought) {
-      dispatch({ type: TOGGLE_API, payload: [] });
+      dispatch({ type: TOGGLE_BOUGHT_DIALOG, payload: [] });
+      dispatch({ type: SET_DATA_BOUGHT, payload: [] });
     }
   };
 

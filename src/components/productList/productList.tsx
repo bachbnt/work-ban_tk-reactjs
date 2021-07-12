@@ -48,7 +48,7 @@ const ProductList = (props: Props) => {
               Quốc gia
             </Typography>
           </Box>
-          <Box width={100} mx={1}>
+          <Box width={80} mx={1}>
             <Typography className={classes.title} variant='h5'>
               Đơn giá
             </Typography>
@@ -58,7 +58,7 @@ const ProductList = (props: Props) => {
               Mô tả
             </Typography>
           </Box>
-          <Box width={40} mx={1}>
+          <Box width={80} mx={1}>
             <Typography className={classes.title} variant='h5'>
               Còn lại
             </Typography>
@@ -77,12 +77,22 @@ const ProductList = (props: Props) => {
           <Box width={100} />
         </Box>
         {countryListReducer?.data.map((item) => (
-          <Product data={item} />
+          <Product
+            data={item}
+            onBought={async () => {
+              await getCountryList(categoryReducer?.id, currentPage);
+            }}
+          />
         ))}
       </Hidden>
       <Hidden smUp>
         {countryListReducer?.data.map((item) => (
-          <ProductMobile data={item} />
+          <ProductMobile
+            data={item}
+            onBought={async () => {
+              await getCountryList(categoryReducer?.id, currentPage);
+            }}
+          />
         ))}
       </Hidden>
       <Pagination

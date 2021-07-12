@@ -55,13 +55,13 @@ const User = (props: Props) => {
         flexDirection='row'
         alignItems='center'
         justifyContent='space-between'>
-        <Box width={100} mx={1}>
+        <Box width={80} mx={1}>
           <Typography>{user.username}</Typography>
         </Box>
-        <Box flex={1} mx={1} textAlign='left'>
+        <Box flex={2} mx={1}>
           <Typography>{user.email}</Typography>
         </Box>
-        <Box width={100} mx={1}>
+        <Box width={80} mx={1}>
           <Typography>{user.phone}</Typography>
         </Box>
         <Box width={40} mx={1}>

@@ -33,17 +33,17 @@ const UserList = (props: Props) => {
           alignItems='center'
           justifyContent='space-between'
           className={clsx(classes.historyContainer)}>
-          <Box width={100} mx={1}>
+          <Box width={80} mx={1}>
             <Typography className={classes.title} variant='h5'>
               Tài khoản
             </Typography>
           </Box>
-          <Box flex={1} mx={1}>
+          <Box flex={2} mx={1}>
             <Typography className={classes.title} variant='h5'>
               Email
             </Typography>
           </Box>
-          <Box width={100} mx={1}>
+          <Box width={80} mx={1}>
             <Typography className={classes.title} variant='h5'>
               SĐT
             </Typography>
@@ -60,7 +60,7 @@ const UserList = (props: Props) => {
           </Box>
           <Box width={150}>
             <Typography className={classes.title} variant='h5'>
-              Cộng trừ (k VNĐ)
+              Cộng trừ (x1000 VNĐ)
             </Typography>
           </Box>
           <Box width={100} />

@@ -53,6 +53,11 @@ class UserService {
     const result = await apiClient.patch(endpoint);
     return result;
   }
+
+  async getApiKey(): Promise<any> {
+    const result = await apiClient.get(Endpoint.API_KEY);
+    return result;
+  }
 }
 
 export const userService = new UserService();

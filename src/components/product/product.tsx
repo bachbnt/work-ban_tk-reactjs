@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import useAuth from 'src/hooks/useAuth';
 import useBuyProduct from 'src/hooks/useBuyProduct';
 import { TOGGLE_SIGN_IN } from 'src/redux/signInDialog/signInDialogAction';
+import { toast } from 'src/utils/toast';
 import Button from '../button';
 import { Props } from './props';
 import useStyles from './styles';
@@ -12,7 +13,7 @@ import useStyles from './styles';
 const Product = (props: Props) => {
   const classes = useStyles();
   const { t } = useTranslation();
-  const { data } = props;
+  const { data, onBought } = props;
   const [total, setTotal] = useState(0);
   const [count, setCount] = useState(0);
   const dispatch = useDispatch();
@@ -26,14 +27,16 @@ const Product = (props: Props) => {
   const clickBuy = async (country: string) => {
     if (!auth.isSignedIn()) {
       openSignIn();
+    } else if (count === 0) {
+      toast.warn('Nhập số lượng');
     } else {
-      await buyProduct(country, count);
+      await buyProduct(country, count, onBought);
     }
   };
 
   const handleChange = (event: any) => {
     setTotal(event.target.value * data.unitPrice);
-    setCount(event.target.value);
+    setCount(parseInt(event.target.value));
   };
 
   if (!data.isPublished) {
@@ -51,14 +54,14 @@ const Product = (props: Props) => {
         <Box width={40} mx={1}>
           <Typography>{data.countryCode}</Typography>
         </Box>
-        <Box width={100} mx={1}>
+        <Box width={80} mx={1}>
           <Typography>{data.unitPrice}</Typography>
         </Box>
         <Box flex={1} mx={1} textAlign='left'>
           <Typography>{data.describe}</Typography>
         </Box>
-        <Box width={40} mx={1}>
-          <Typography>{data.quality}</Typography>
+        <Box width={80} mx={1}>
+          <Typography>{data.quantity}</Typography>
         </Box>
         <Box width={100} mx={1}>
           <TextField
@@ -68,7 +71,7 @@ const Product = (props: Props) => {
             variant='outlined'
             type='number'
             defaultValue={0}
-            InputProps={{ inputProps: { min: 0, max: data.quality } }}
+            InputProps={{ inputProps: { min: 0, max: data.quantity } }}
             onChange={(event) => {
               handleChange(event);
             }}
@@ -78,7 +81,7 @@ const Product = (props: Props) => {
           <Typography>{total}</Typography>
         </Box>
         <Button
-          disabled={data.quality === 0}
+          disabled={data.quantity === 0}
           onClick={async () => {
             await clickBuy(data._id);
           }}

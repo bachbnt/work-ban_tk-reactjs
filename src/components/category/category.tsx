@@ -23,10 +23,10 @@ const Category = (props: Props) => {
         flexDirection='row'
         alignItems='center'
         justifyContent='space-between'>
-        <Box flex={1} mx={1} textAlign='left'>
+        <Box flex={1} mx={1}>
           <Typography>{data._id}</Typography>
         </Box>
-        <Box flex={1} mx={1} textAlign='left'>
+        <Box flex={1} mx={1}>
           <Typography>{data.name}</Typography>
         </Box>
         <Box flex={1} mx={1} textAlign='right'>

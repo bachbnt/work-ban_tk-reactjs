@@ -5,29 +5,38 @@ import { useDispatch } from 'react-redux';
 import useAuth from 'src/hooks/useAuth';
 import { TOGGLE_SIGN_IN } from 'src/redux/signInDialog/signInDialogAction';
 import Button from '../button';
+import useBuyProduct from 'src/hooks/useBuyProduct';
 import { Props } from './props';
 import useStyles from './styles';
+import { toast } from 'src/utils/toast';
 
 const ProductMobile = (props: Props) => {
   const classes = useStyles();
   const { t } = useTranslation();
-  const { data } = props;
+  const { data, onBought } = props;
   const [total, setTotal] = useState(0);
+  const [count, setCount] = useState(0);
   const dispatch = useDispatch();
   const auth = useAuth();
+  const { buyProduct } = useBuyProduct();
 
   const openSignIn = () => {
     dispatch({ type: TOGGLE_SIGN_IN });
   };
 
-  const clickBuy = () => {
+  const clickBuy = async (country: string) => {
     if (!auth.isSignedIn()) {
       openSignIn();
+    } else if (count === 0) {
+      toast.warn('Nhập số lượng');
+    } else {
+      await buyProduct(country, count, onBought);
     }
   };
 
   const handleChange = (event: any) => {
     setTotal(event.target.value * data.unitPrice);
+    setCount(parseInt(event.target.value));
   };
 
   if (!data.isPublished) {
@@ -73,7 +82,7 @@ const ProductMobile = (props: Props) => {
           justifyContent='space-between'
           alignItems='center'>
           <Typography className={classes.leading}>Còn lại</Typography>
-          <Typography>{data.quality}</Typography>
+          <Typography>{data.quantity}</Typography>
         </Box>
         <Box
           display='flex'
@@ -90,7 +99,7 @@ const ProductMobile = (props: Props) => {
               variant='outlined'
               type='number'
               defaultValue={0}
-              InputProps={{ inputProps: { min: 0, max: data.quality } }}
+              InputProps={{ inputProps: { min: 0, max: data.quantity } }}
               onChange={(event) => {
                 handleChange(event);
               }}
@@ -108,7 +117,10 @@ const ProductMobile = (props: Props) => {
         </Box>
         <Box textAlign='right'>
           <Button
-            onClick={clickBuy}
+            onClick={async () => {
+              await clickBuy(data._id);
+            }}
+            disabled={data.quantity === 0}
             classes={{
               root: classes.button,
             }}>{`Mua ${data.countryCode}`}</Button>

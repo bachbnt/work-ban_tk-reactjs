@@ -31,6 +31,7 @@ const AdminUploadProduct = (props: Props) => {
 
   const handleChangeCategory = async (event: any) => {
     setSelectedCategory(event.target.value);
+    console.log(event.target.value);
     await getCountryList(event.target.value);
   };
 

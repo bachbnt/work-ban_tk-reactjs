@@ -106,6 +106,24 @@ const CountryList = (props: Props) => {
             Danh sách sản phẩm
           </Typography>
         </Box>
+        <Grid container direction='row' alignItems='center'>
+          <Typography>Chọn danh mục</Typography>
+          <Box mx={2} />
+          <FormControl className={classes.formControl}>
+            <InputLabel id='demo-simple-select-label'>Category</InputLabel>
+            <Select
+              labelId='demo-simple-select-label'
+              id='demo-simple-select'
+              value={selectedCategory}
+              onChange={handleChangeCategory}>
+              {categoryList.map((item) => (
+                <MenuItem key={item._id} value={item._id}>
+                  {item.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Grid>
         {countryList.map((item) => (
           <CountryMobile
             key={item._id}

@@ -73,16 +73,18 @@ const CountryMobile = (props: Props) => {
           alignItems='center'
           my={1}>
           <Typography className={classes.leading}>Tên</Typography>
-          <TextField
-            classes={{ root: classes.textField }}
-            margin='none'
-            inputMode='decimal'
-            variant='outlined'
-            defaultValue={currentName}
-            onChange={(event) => {
-              changeName(event);
-            }}
-          />
+          <Box width={120}>
+            <TextField
+              classes={{ root: classes.textField }}
+              margin='none'
+              inputMode='decimal'
+              variant='outlined'
+              defaultValue={currentName}
+              onChange={(event) => {
+                changeName(event);
+              }}
+            />
+          </Box>
         </Box>
         <Box
           display='flex'
@@ -91,18 +93,20 @@ const CountryMobile = (props: Props) => {
           alignItems='center'
           my={1}>
           <Typography className={classes.leading}>Đơn giá</Typography>
-          <TextField
-            classes={{ root: classes.textField }}
-            margin='none'
-            inputMode='decimal'
-            variant='outlined'
-            type='number'
-            defaultValue={currentPrice}
-            InputProps={{ inputProps: { min: 0 } }}
-            onChange={(event) => {
-              changePrice(event);
-            }}
-          />
+          <Box width={120}>
+            <TextField
+              classes={{ root: classes.textField }}
+              margin='none'
+              inputMode='decimal'
+              variant='outlined'
+              type='number'
+              defaultValue={currentPrice}
+              InputProps={{ inputProps: { min: 0 } }}
+              onChange={(event) => {
+                changePrice(event);
+              }}
+            />
+          </Box>
         </Box>
         <Box
           display='flex'
@@ -111,21 +115,23 @@ const CountryMobile = (props: Props) => {
           alignItems='center'
           my={1}>
           <Typography className={classes.leading}>Hiển thị</Typography>
-          <FormControl className={classes.formControl}>
-            <InputLabel id='demo-simple-select-label'>Publish</InputLabel>
-            <Select
-              labelId='demo-simple-select-label'
-              id='demo-simple-select'
-              value={currentPublished ? 1 : 0}
-              onChange={changePublished}>
-              <MenuItem key={'yes'} value={1}>
-                Có
-              </MenuItem>
-              <MenuItem key={'no'} value={0}>
-                Không
-              </MenuItem>
-            </Select>
-          </FormControl>
+          <Box width={120}>
+            <FormControl className={classes.formControl}>
+              <InputLabel id='demo-simple-select-label'>Publish</InputLabel>
+              <Select
+                labelId='demo-simple-select-label'
+                id='demo-simple-select'
+                value={currentPublished ? 1 : 0}
+                onChange={changePublished}>
+                <MenuItem key={'yes'} value={1}>
+                  Có
+                </MenuItem>
+                <MenuItem key={'no'} value={0}>
+                  Không
+                </MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
         </Box>
         <Box textAlign='right'>
           <Button classes={{ root: classes.button }} onClick={handleUpdate}>

@@ -6,7 +6,6 @@ import { cookie } from 'src/utils/cookie';
 const initApiClient = (baseURL: string): AxiosInstance => {
   const defaultConfig = {
     baseURL,
-    timeout: 6 * 1000,
     headers: {
       'Content-Type': 'application/json',
     },

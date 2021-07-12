@@ -5,6 +5,6 @@ export interface Country {
   unitPrice: number;
   image: string;
   describe: string;
-  quality: number;
+  quantity: number;
   isPublished: boolean;
 }

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { HIDE_SPINNER, SHOW_SPINNER } from 'src/redux/spinner/spinnerAction';
