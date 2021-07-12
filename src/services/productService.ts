@@ -12,6 +12,10 @@ class ProductService {
     const result = await apiClient.post(Endpoint.BUY, { country, quantity });
     return result;
   }
+  async uploadProduct(data: any): Promise<any> {
+    const result = await apiClient.post(Endpoint.UPLOAD, data);
+    return result;
+  }
 }
 
 export const productService = new ProductService();
