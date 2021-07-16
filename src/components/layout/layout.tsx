@@ -26,6 +26,7 @@ import {
   SET_DATA_BOUGHT,
   TOGGLE_BOUGHT_DIALOG,
 } from 'src/redux/boughtDialog/boughtDialogAction';
+import useAuth from 'src/hooks/useAuth';
 
 const Layout = (props: Props) => {
   const classes = useStyles();
@@ -33,6 +34,7 @@ const Layout = (props: Props) => {
   const { children, main } = props;
   const dispatch = useDispatch();
 
+  const auth = useAuth();
   const drawerReducer = useSelector((state: RootState) => state.drawerReducer);
   const signInReducer = useSelector(
     (state: RootState) => state.signInDialogReducer
@@ -128,10 +130,18 @@ const Layout = (props: Props) => {
         open={openVerifyEmail}
         onClose={handleCloseVerifyEmail}
       />
-      <MoneyDialog open={openMoney} onClose={handleCloseMoney} />
-      <ApiDialog open={openApi} onClose={handleCloseApi} />
-      <BoughtDialog open={openBought} onClose={handleCloseBought} />
-      <HistoryDialog open={openHistory} onClose={handleCloseHistory} />
+      {auth.isSignedIn() && (
+        <MoneyDialog open={openMoney} onClose={handleCloseMoney} />
+      )}
+      {auth.isSignedIn() && (
+        <ApiDialog open={openApi} onClose={handleCloseApi} />
+      )}
+      {auth.isSignedIn() && (
+        <BoughtDialog open={openBought} onClose={handleCloseBought} />
+      )}
+      {auth.isSignedIn() && (
+        <HistoryDialog open={openHistory} onClose={handleCloseHistory} />
+      )}
     </Box>
   );
 };
