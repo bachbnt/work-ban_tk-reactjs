@@ -1,5 +1,5 @@
 export class Endpoint {
-  static readonly BASE_URL = 'http://localhost:8080';
+  static readonly BASE_URL = 'http://207.148.71.119:8080';
   static readonly SIGN_IN = '/auth/login';
   static readonly SIGN_UP = '/auth/register';
   static readonly SIGN_OUT = '';
