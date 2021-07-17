@@ -9,7 +9,6 @@ import useAuth from './useAuth';
 import { TOGGLE_SIGN_IN } from 'src/redux/signInDialog/signInDialogAction';
 import { SET_USER } from 'src/redux/user/userAction';
 import useResendEmail from './useResendEmail';
-import useBankInfo from './useBankInfo';
 
 const useSignIn = () => {
   const { t } = useTranslation();

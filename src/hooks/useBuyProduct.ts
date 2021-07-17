@@ -8,10 +8,12 @@ import {
   SET_DATA_BOUGHT,
   TOGGLE_BOUGHT_DIALOG,
 } from 'src/redux/boughtDialog/boughtDialogAction';
+import useProfile from './useProfile';
 
 const useBuyProduct = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const { getMe } = useProfile();
 
   const buyProduct = useCallback(
     async (country: string, quantity: number, onSuccess: () => void) => {
@@ -22,6 +24,7 @@ const useBuyProduct = () => {
           toast.success('Mua thành công');
           dispatch({ type: SET_DATA_BOUGHT, payload: result.data });
           dispatch({ type: TOGGLE_BOUGHT_DIALOG });
+          await getMe();
           onSuccess();
         }
       } catch (error) {
@@ -30,7 +33,7 @@ const useBuyProduct = () => {
         dispatch({ type: HIDE_SPINNER });
       }
     },
-    [t, dispatch]
+    [t, dispatch, getMe]
   );
 
   return { buyProduct };

@@ -20,4 +20,5 @@ export class Endpoint {
   static readonly CUT_MONEY = '/users/{id}/cut-money';
   static readonly RESET_PASSWORD = '/users/{id}/reset-password';
   static readonly API_KEY = '/users/api-key';
+  static readonly ME = '/users/me';
 }
