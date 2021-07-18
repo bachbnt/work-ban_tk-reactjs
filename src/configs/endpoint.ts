@@ -1,5 +1,5 @@
 export class Endpoint {
-  static readonly BASE_URL = "https://hotmail24h.com/api";
+  static readonly BASE_URL = "https://www.hotmail24h.com/api";
   static readonly SIGN_IN = "/auth/login";
   static readonly SIGN_UP = "/auth/register";
   static readonly SIGN_OUT = "";
